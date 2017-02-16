@@ -16,7 +16,7 @@ Varinfo<-data.frame(Variable=c("DUL2","SAT3","biochar_loss1"),
                     StartingV=c(0.3,0.45,0.02),
                     PriorM=c(0.35,0.4,0.02),
                     PriorSD=c(0.02,0.02,0.01),
-                    Step=c(0.05,0.01,0.005),
+                    Step=c(0.05,0.05,0.05),
                     Type=c("Element","Element","Single"),
                     BoundU=c(0.4,0.6,0.1),
                     BoundL=c(0.1,0.25,0.0001),
@@ -25,7 +25,13 @@ Varinfo<-data.frame(Variable=c("DUL2","SAT3","biochar_loss1"),
 
 
 Result.sim<-apsimOptim(apsimWd, apsimExe, apsimFile, apsimVarL, Varinfo, tag="",
-                        unlinkf=T,nitr=5,obs=obsdf,Gibbs=T,show.output = F,verbos = T)
+                        unlinkf=T,nitr=150,obs=obsdf,Gibbs=T,show.output = F,verbos = T)
 
 
-plot(Result.sim)
+plot(Result.sim,type="Posterior")
+
+plot(Result.sim,type="Cost")
+
+plot(Result.sim,type="Simulations",burnin = 20)
+
+

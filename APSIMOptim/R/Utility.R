@@ -122,8 +122,26 @@ addCommas<-function(str){
 
 }
 ################## plot output
-plot.apsimOptim<-function(x){
-  params<-as.data.frame(x$Param)
-  names(params)<-x$var
-  boxplot(params)
+plot.apsimOptim<-function(x,type="Posterior",burnin=0){
+  if(type=="Posterior"){
+      params<-as.data.frame(x$Param)
+      names(params)<-x$var
+      params<-params[-c(1:burnin),c(1:length(x$var))]
+      boxplot(params)
+  }else if (type=="Cost"){
+    cost<-x$Param[-c(1:burnin),length(x$var)+1]
+    plot(cost)
+    lines(cost)
+  }else if (type=="Simulations"){
+    x$Variable<-as.data.frame(x$Variable)
+    names(x$Variable)<-paste0("X",1:ncol(x$Variable))
+    x$Variable<-x$Variable[,-c(1:burnin)] #taking out burnin
+    x$Variable$Date<-x$Obs[,1]
+    x$Variable%>%gather(Param,Value,-c(Date))%>%
+      ggplot(aes(x=Date))+
+      geom_line(aes(Date,Value,color=Param),lwd=1.05)+
+      geom_point(aes(x$Obs[,1],x$Obs[,2]),size=3,data=x$Obs)+
+      theme_bw(base_size = 18)+
+      theme(legend.position="none")
+  }
 }

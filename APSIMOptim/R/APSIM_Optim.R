@@ -64,9 +64,7 @@ apsimOptim<-function(apsimWd, apsimExe, apsimFile, apsimVarL, Varinfo, tag, unli
     ###############################################################################
     ###### Running model
     ###############################################################################
-    # cat(turn,"--",varnames,"--",Pmeans,"--",boundU,"\n")
-    apsimValue <- as.list((news))
-    VarT<-Varinfo[which(varnames%in%Varinfo$Variable),6]
+    apsimValue <- as.list((news)) ##Takes the values form new generated samples
     Fname<-paste0(unlist(strsplit(apsimFile, "[.]"))[1],"_edited",tagc,".apsim") #edited file
     ## Edit file
     simname<-(edit_apsim(file = apsimFile, wd = apsimWd, var = apsimVar, tag=paste0("_edited",tagc),
@@ -101,17 +99,19 @@ apsimOptim<-function(apsimWd, apsimExe, apsimFile, apsimVarL, Varinfo, tag, unli
     ################################
     ############ Making desicion about the propsed sample
     ################################
+    Desi<-log(runif(1, 0, 1)) < ((oldCost- cost_c) + (log(pratio)))
   if(verbos)  {
-    cat(i,"-> Variable:",varnames[turn],"\n",
-        "    -New sample:",news[turn],"\n",
-        "    -Old sample:",olds[turn],"\n",
-        "    -Prior mean:",Pmeans[turn],"\n",
-        "    -Prior sd:",Psds[turn],"\n",
-        "    -Prior ratio:",pratio,"\n",
-        "    -Current cost:",cost_c,"\n",
-        "    -Old cost:",oldCost,"\n")
+    cat(i,"/",nitr,"-> Variable:",varnames[turn],"\n",
+          "      -New sample:",news[turn],"\n",
+          "      -Old sample:",olds[turn],"\n",
+          "      -Prior mean:",Pmeans[turn],"\n",
+          "      -Prior sd:",Psds[turn],"\n",
+          "      -Prior ratio:",pratio,"\n",
+          "      -Current cost:",cost_c,"\n",
+          "      -Old cost:",oldCost,"\n",
+          "      -Accetpted:",Desi,"\n")
   }
-    if (log(runif(1, 0, 1)) < ((oldCost- cost_c) + (log(pratio)))) { #log form
+    if (Desi) { #log form
       olds <- news#updating
       oldCost <- cost_c	#cost
       out[j,]<-c(news, cost_c)
@@ -122,10 +122,12 @@ apsimOptim<-function(apsimWd, apsimExe, apsimFile, apsimVarL, Varinfo, tag, unli
     ################################
     ############ Killing the job ruuner of APSIM
     ###############################################################################
-    job <- grep("^JobRunner", readLines(textConnection(system('tasklist', intern = TRUE))), value = TRUE)
-    PIDS<-(read.table(text = job))
-    if (nrow(PIDS)>20) {
-      pskill(head(PIDS$V2,nrow(PIDS)-10))
+    job <- grep("^JobRunner", readLines(textConnection(system('tasklist', intern = TRUE))), value = TRUE) # finding the pid of the job runners
+      if(length(job)>0){ # if there is job runner running
+        PIDS<-(read.table(text = job))
+      if (nrow(PIDS)>20) {
+        pskill(head(PIDS$V2,nrow(PIDS)-10))
+      }
     }
 
   }# end e loop

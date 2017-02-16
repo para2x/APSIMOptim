@@ -12,5 +12,5 @@ apsimVarL <- list("Soil/Water/DUL"=2,"Soil/Water/SAT"=1,
 
 VarT<-c("Element","Element","Single")
 
-Result.sim<-APSIM.RUN(apsimWd, apsimExe, apsimFile, apsimVarL,VarT, tag="",
+Result.sim<-apsimRun(apsimWd, apsimExe, apsimFile, apsimVarL,VarT, tag="",
                       unlinkf=F, Varvalues=c(0.4,0.1,0.1))

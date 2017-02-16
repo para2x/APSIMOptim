@@ -15,13 +15,17 @@ apsimVarL <- list("Soil/Water/DUL"=2,"Soil/Water/SAT"=3,"folder/manager2/ui/bioc
 Varinfo<-data.frame(Variable=c("DUL2","SAT3","biochar_loss1"),
                     StartingV=c(0.3,0.45,0.02),
                     PriorM=c(0.35,0.4,0.02),
-                    PriorSD=c(0.05,0.001,0.0001),
-                    Step=c(0.005,0.001,0.0001),
+                    PriorSD=c(0.02,0.02,0.01),
+                    Step=c(0.05,0.01,0.005),
                     Type=c("Element","Element","Single"),
                     BoundU=c(0.4,0.6,0.1),
-                    BoundL=c(0.1,0.25,0.0001))
+                    BoundL=c(0.1,0.25,0.0001),
+                    Functions=c("Normal","Normal","Uniform"))
 
 
 
-Result.sim<-APSIM.Optim(apsimWd, apsimExe, apsimFile, apsimVarL, Varinfo, tag="",
-                        unlinkf=T,nitr=2,obs=obsdf,Gibbs=T,show.output = F)
+Result.sim<-apsimOptim(apsimWd, apsimExe, apsimFile, apsimVarL, Varinfo, tag="",
+                        unlinkf=T,nitr=5,obs=obsdf,Gibbs=T,show.output = F,verbos = T)
+
+
+plot(Result.sim)

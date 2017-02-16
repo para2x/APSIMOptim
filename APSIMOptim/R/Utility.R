@@ -121,3 +121,9 @@ addCommas<-function(str){
   return(str)
 
 }
+################## plot output
+plot.apsimOptim<-function(x){
+  params<-as.data.frame(x$Param)
+  names(params)<-x$var
+  boxplot(params)
+}

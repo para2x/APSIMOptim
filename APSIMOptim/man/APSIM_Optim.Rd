@@ -1,8 +1,8 @@
-\name{APSIM.Optim}
-\alias{APSIM.Optim}
+\name{apsimOptim}
+\alias{apsimOptim}
 \title{Tries to optimize APSIM input parameter unsing Metrapolis-Hasting algorithm}
 \usage{
-APSIM.Optim(apsimWd,apsimExe,apsimFile,apsimVarL,Varinfo,tag,unlinkf=F,nitr=10,obs=NULL,Gibbs=T,oldCost=1e6,show.output = TRUE)
+apsimOptim(apsimWd,apsimExe,apsimFile,apsimVarL,Varinfo,tag,unlinkf=F,nitr=10,obs=NULL,Gibbs=T,oldCost=1e6,show.output = TRUE,verbose=T)
 }
 \arguments{
   \item{apsimWd}{APSIM working directory}
@@ -17,7 +17,7 @@ APSIM.Optim(apsimWd,apsimExe,apsimFile,apsimVarL,Varinfo,tag,unlinkf=F,nitr=10,o
 \item{Gibbs}{If you want the Gibbs sampling. }
 \item{oldCost}{Stating value of the cost (psudo liklihood). }
 \item{show.output}{If you want to see the output of APSIM runs. }
-
+\item{verbose}{Shows the detail of the current step.}
 }
 \value{
 The out put is a dataframe with the result of simulation.
@@ -39,14 +39,16 @@ apsimFile<- "BioMaize.apsim"
 
 apsimVarL <- list("Soil/Water/DUL"=2,"Soil/Water/SAT"=3,"folder/manager2/ui/biochar_loss"=1); ## variables of intterest
 
+
 Varinfo<-data.frame(Variable=c("DUL2","SAT3","biochar_loss1"),
                     StartingV=c(0.3,0.45,0.02),
                     PriorM=c(0.35,0.4,0.02),
-                    PriorSD=c(0.05,0.001,0.0001),
-                    Step=c(0.005,0.001,0.0001),
+                    PriorSD=c(0.05,0.01,0.01),
+                    Step=c(0.05,0.01,0.005),
                     Type=c("Element","Element","Single"),
                     BoundU=c(0.4,0.6,0.1),
-                    BoundL=c(0.1,0.25,0.0001))
+                    BoundL=c(0.1,0.25,0.0001),
+                    Functions=c("Normal","Normal","Uniform"))
 
 
 

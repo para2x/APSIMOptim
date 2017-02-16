@@ -1,9 +1,8 @@
 ################## Ready for the run and estimating the cost
-APSIM.RUN<-function(apsimWd,apsimExe,apsimFile,apsimVarL,VarT,tag,unlinkf=F,Varvalues){
+apsimRun<-function(apsimWd,apsimExe,apsimFile,apsimVarL,VarT,tag,unlinkf=F,Varvalues, show.output = TRUE){
   nvar<-length(apsimVarL)
   news <- matrix(NA, 1, nvar)
   tagc<-tag
-
   apsimVar<-names(apsimVarL) # finding the name of variables
   elp <- unlist(apsimVarL)   # finding the element which is the value in the list
   varnames<-unlist(lapply(apsimVar,function(x){tail(strsplit(x,split="/")[[1]],1)}))  # fidning the variables names
@@ -19,7 +18,7 @@ APSIM.RUN<-function(apsimWd,apsimExe,apsimFile,apsimVarL,VarT,tag,unlinkf=F,Varv
   outFname<-paste0(unclass(simname),".out") #outfile
   sumFname<-paste0(unclass(simname),".sum") #outfile
   # Find the dited file location
-  system(paste(addCommas(apsimExe),Fname, sep = " "), show.output.on.console = TRUE)
+  system(paste(addCommas(apsimExe),Fname, sep = " "), show.output.on.console = show.output)
   # run the edited file
   results <- (read_out(paste0(getwd(),"/",outFname)))
   if(unlinkf){

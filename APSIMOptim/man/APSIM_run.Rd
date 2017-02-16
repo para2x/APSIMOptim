@@ -1,8 +1,8 @@
-\name{APSIM.RUN}
-\alias{APSIM.RUN}
+\name{apsimRun}
+\alias{apsimRun}
 \title{Edit and run APSIM simulations}
 \usage{
-APSIM.RUN(apsimWd,apsimExe,apsimFile,apsimVarL,VarT,tag,unlinkf=F,Varvalues)
+apsimRun(apsimWd,apsimExe,apsimFile,apsimVarL,VarT,tag,unlinkf=F,Varvalues)
 }
 \arguments{
   \item{apsimWd}{APSIM working directory}

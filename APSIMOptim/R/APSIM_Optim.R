@@ -1,7 +1,7 @@
 ################## Ready for the run and estimating the cost
 apsimOptim<-function(apsimWd, apsimExe, apsimFile, apsimVarL, Varinfo, tag, unlinkf=F, nitr=10,
-                      obs=NULL, Gibbs=T, vc=NULL, show.output = TRUE,verbos=T){
-
+                      obs=NULL, Gibbs=T, vc=NULL, show.output = TRUE,verbos=T,Simname="Simulation"){
+  options(warn=-1) #supress warnings resulting from cbind and join
   nvar<-length(apsimVarL) # number of variables
   news <- matrix(NA, 1, nvar) # this vector keeps the values for the new set of poposed samples
   tagc<-tag # it will be added to the edited apsim file
@@ -13,7 +13,7 @@ apsimOptim<-function(apsimWd, apsimExe, apsimFile, apsimVarL, Varinfo, tag, unli
   ## simulation variables
   ###################################################
   oldCost=1e6 ## starting cost for the psudo liklihood
-  sws <- matrix(NA, length(obs[,2]), nitr) ## this matrix keeps the results of simulations from accepted samples
+  sws <- matrix(NA, nrow(obs), nitr) ## this matrix keeps the results of simulations from accepted samples
   olds<-Varinfo[which(varnames%in%Varinfo$Variable),2] ## finding starting values
   out <- matrix(NA, nitr, nvar + 1) # output which contains all the parameters posterior
   Pmeans<-Varinfo[which(varnames%in%Varinfo$Variable),3] ## finding starting values
@@ -31,6 +31,7 @@ apsimOptim<-function(apsimWd, apsimExe, apsimFile, apsimVarL, Varinfo, tag, unli
   Start.date <-obs[1,1]
   End.date <-  obs[nrow(obs),1]
   j<-1 # this counts the number of accepted samples and put it on matrix
+  tsimstart<-proc.time()
   #################### Stating the loop
   for (i in 1:nitr) {
     ###############################################################################
@@ -81,6 +82,7 @@ apsimOptim<-function(apsimWd, apsimExe, apsimFile, apsimVarL, Varinfo, tag, unli
     n2<-names(obs)[1]
     attr(n2,"names")<-n1
     results<-results%>%right_join(obs,by=n2)
+    #cat(dim(sws),"--",dim(results),"--",dim(obs),"\n")
     ### estimating the cost for liklihood
     cost_c <- 0.5 * (sum((results[,2] - results[,3]) ^ 2)) / var(results[,2])
     ###############################################################################
@@ -136,8 +138,9 @@ apsimOptim<-function(apsimWd, apsimExe, apsimFile, apsimVarL, Varinfo, tag, unli
   }
   #building output
     output<-list("Param" = out[which(complete.cases(out)),], "Variable" = sws[, colSums(is.na(sws)) != nrow(sws)]
-, "Pm" = Pmeans, "Psd" = Psds, "Proposal" = stepsU,
-                  "var"=varnames,"Obs"=obs,"Itration"=i,"APfile"=apsimFile,"Gsampling"=Gibbs)
+, "Variable Info" = Varinfo,"var"=varnames,"Obs"=obs,"Itration"=i,"APfile"=apsimFile,"Gsampling"=Gibbs,"Simulation name"=Simname,
+"Elapsed time"=proc.time()-tsimstart)
+
     class(output)<-"apsimOptim"
   return(output)
 }

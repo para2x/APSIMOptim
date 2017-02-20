@@ -135,13 +135,25 @@ plot.apsimOptim<-function(x,type="Posterior",burnin=0){
   }else if (type=="Simulations"){
     x$Variable<-as.data.frame(x$Variable)
     names(x$Variable)<-paste0("X",1:ncol(x$Variable))
+    if(burnin>ncol(x$Variable))stop("Burnin is greater than the number of accepted sampels.")
     x$Variable<-x$Variable[,-c(1:burnin)] #taking out burnin
-    x$Variable$Date<-x$Obs[,1]
+    x$Variable<-cbind(x$Variable,x$Obs[,1])
+    names(x$Variable)[length(names(x$Variable))]<-"Date"
     x$Variable%>%gather(Param,Value,-c(Date))%>%
       ggplot(aes(x=Date))+
       geom_line(aes(Date,Value,color=Param),lwd=1.05)+
       geom_point(aes(x$Obs[,1],x$Obs[,2]),size=3,data=x$Obs)+
       theme_bw(base_size = 18)+
       theme(legend.position="none")
+
   }
+}
+
+summary.apsimOptim<-function(x){
+cat("Total iteration=",x$Itration,"\n")
+cat("Accepted samples=",nrow(x$Param),"\n")
+cat("--- \n")
+params<-as.data.frame(x$Param)
+names(params)<-c(x$var,"Cost")
+summary(params)
 }

@@ -25,13 +25,13 @@ Varinfo<-data.frame(Variable=c("DUL2","SAT3","biochar_loss1"),
 
 
 Result.sim<-apsimOptim(apsimWd, apsimExe, apsimFile, apsimVarL, Varinfo, tag="",
-                        unlinkf=T,nitr=150,obs=obsdf,Gibbs=T,show.output = F,verbos = T)
+                        unlinkf=T,nitr=10,obs=obsdf,Gibbs=T,show.output = F,verbos = T)
 
 
 plot(Result.sim,type="Posterior")
 
 plot(Result.sim,type="Cost")
 
-plot(Result.sim,type="Simulations",burnin = 20)
+plot(Result.sim,type="Simulations",burnin = 0)
 
 

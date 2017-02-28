@@ -53,6 +53,10 @@ Varinfo<-data.frame(Variable=c("DUL2","SAT3","biochar_loss1"),
 
 
 Result.sim<-APSIM.Optim(apsimWd, apsimExe, apsimFile, apsimVarL, Varinfo, tag="",
-          unlinkf=F,nitr=2,obs=obsdf,Gibbs=F)
+          unlinkf=F,nitr=2,obs=obsdf,Gibbs=F, show.output = F, verbose = F,usePrior = T)
 
+plot(Result.sim,type="Posterior",burnin = 15)
+plot(Result.sim,type="Posterior_Combo",burnin = 15)
+plot(Result.sim,type="Interval",burnin = 15)
+plot(Result.sim,type="Simulations",burnin = 15)
 }

@@ -96,7 +96,7 @@ edit_apsim<-function(file, wd = getwd(), var, value, varType, Elpos=NULL, tag="-
     setwd(oldWD)
 
     saveXML(pXML,file=newFileName)
-    simname<-pXML[["/folder/simulation/@name"]]
+    simname<-pXML[["/folder/folder/simulation/@name"]]
     #
     rm(vari,wholeSim,outName,outTitle)
     if(exists("pXML")){
@@ -122,38 +122,61 @@ addCommas<-function(str){
 
 }
 ################## plot output
-plot.apsimOptim<-function(x,type="Posterior",burnin=0){
-  if(type=="Posterior"){
+plot.apsimOptim<-function(x,type="Posterior",burnin=0,cols=-1){
+  if(length(cols)==1 & cols[1]==-1){
+    cols<-1:length(x$var)
+    }
+  if(type=="Posterior_Combo"){
       params<-as.data.frame(x$Param)
       names(params)<-x$var
-      params<-params[-c(1:burnin),c(1:length(x$var))]
-      boxplot(params)
+      params<-params[-c(1:burnin),cols]
+      mcmc_combo(params)
+  }else if (type=="Posterior"){
+    params<-as.data.frame(x$Param)
+    names(params)<-x$var
+    params<-params[-c(1:burnin),cols]
+    mcmc_hist(params)
+ }else if (type=="Interval"){
+    params<-as.data.frame(x$Param)
+    names(params)<-x$var
+    params<-params[-c(1:burnin),cols]
+    mcmc_intervals(params)
   }else if (type=="Cost"){
     cost<-x$Param[-c(1:burnin),length(x$var)+1]
     plot(cost)
     lines(cost)
   }else if (type=="Simulations"){
-    x$Variable<-as.data.frame(x$Variable)
-    names(x$Variable)<-paste0("X",1:ncol(x$Variable))
-    if(burnin>ncol(x$Variable))stop("Burnin is greater than the number of accepted sampels.")
-    x$Variable<-x$Variable[,-c(1:burnin)] #taking out burnin
-    x$Variable<-cbind(x$Variable,x$Obs[,1])
-    names(x$Variable)[length(names(x$Variable))]<-"Date"
-    x$Variable%>%gather(Param,Value,-c(Date))%>%
-      ggplot(aes(x=Date))+
-      geom_line(aes(Date,Value,color=Param),lwd=1.05)+
-      geom_point(aes(x$Obs[,1],x$Obs[,2]),size=3,data=x$Obs)+
-      theme_bw(base_size = 18)+
-      theme(legend.position="none")
+
+if(burnin>ncol(x$Simulations))stop("Burnin is greater than the number of accepted sampels.")
+x$Simulations<-x$Simulations[,-c(1:burnin)] #taking out burnin
+
+upper<-apply(x$Simulations,1,max)
+lower<-apply(x$Simulations,1,min)
+median<-apply(x$Simulations,1,median)
+mean<-apply(x$Simulations,1,mean)
+names(x$Obs)[2]<-"Obs"
+names(x$Obs)[1]<-"Date"
+plotdf<-cbind(x$Obs,upper,lower,median,mean)
+
+plotdf%>%ggplot(aes(Date))+
+  geom_ribbon(aes(ymin=lower,ymax=upper), fill = "grey85")+
+  geom_line(aes(y=mean),linetype=2,col="red",size=1.02)+
+  geom_line(aes(y=median),size=1.02)+
+  geom_point(aes(y=Obs),size=3)+
+  theme_bw(base_size = 18)+
+  theme(legend.position="none")
+
 
   }
 }
 
-summary.apsimOptim<-function(x){
+summary.apsimOptim<-function(x,burnin=0){
 cat("Total iteration=",x$Itration,"\n")
 cat("Accepted samples=",nrow(x$Param),"\n")
+cat("Simulation name=",as.character(x[9]),"\n")
 cat("--- \n")
-params<-as.data.frame(x$Param)
+params<-as.data.frame(x$Param[-c(1:burnin),])
 names(params)<-c(x$var,"Cost")
 summary(params)
 }
+

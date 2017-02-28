@@ -1,6 +1,6 @@
 ################## Ready for the run and estimating the cost
 apsimOptim<-function(apsimWd, apsimExe, apsimFile, apsimVarL, Varinfo, tag, unlinkf=F, nitr=10,
-                      obs=NULL, Gibbs=T, vc=NULL, show.output = TRUE,verbos=T,Simname="Simulation"){
+                      obs=NULL, Gibbs=T, vc=NULL, show.output = TRUE,verbose=T,Simname="Simulation",usePrior=T){
   options(warn=-1) #supress warnings resulting from cbind and join
   nvar<-length(apsimVarL) # number of variables
   news <- matrix(NA, 1, nvar) # this vector keeps the values for the new set of poposed samples
@@ -70,9 +70,10 @@ apsimOptim<-function(apsimWd, apsimExe, apsimFile, apsimVarL, Varinfo, tag, unli
     ## Edit file
     simname<-(edit_apsim(file = apsimFile, wd = apsimWd, var = apsimVar, tag=paste0("_edited",tagc),
                          value = apsimValue, varType = VarT, Elpos = elp, overwrite = FALSE))
-
+ # cat("----------",simname,"\n")
     outFname<-paste0(unclass(simname),".out") #outfile
     sumFname<-paste0(unclass(simname),".sum") #sumfile
+
     # Find the dited file location
     system(paste(addCommas(apsimExe),Fname, sep = " "), show.output.on.console = show.output)
     # run the edited file
@@ -84,7 +85,9 @@ apsimOptim<-function(apsimWd, apsimExe, apsimFile, apsimVarL, Varinfo, tag, unli
     results<-results%>%right_join(obs,by=n2)
     #cat(dim(sws),"--",dim(results),"--",dim(obs),"\n")
     ### estimating the cost for liklihood
+
     cost_c <- 0.5 * (sum((results[,2] - results[,3]) ^ 2)) / var(results[,2])
+
     ###############################################################################
     ################### Calculating the prior information piece
     ###############################################################################
@@ -101,8 +104,12 @@ apsimOptim<-function(apsimWd, apsimExe, apsimFile, apsimVarL, Varinfo, tag, unli
     ################################
     ############ Making desicion about the propsed sample
     ################################
-    Desi<-log(runif(1, 0, 1)) < ((oldCost- cost_c) + (log(pratio)))
-  if(verbos)  {
+   if(usePrior){
+     Desi<-log(runif(1, 0, 1)) < ((oldCost- cost_c) + (log(pratio)))
+   }else{
+     Desi<- (oldCost>cost_c)
+   }
+  if(verbose)  {
     cat(i,"/",nitr,"-> Variable:",varnames[turn],"\n",
           "      -New sample:",news[turn],"\n",
           "      -Old sample:",olds[turn],"\n",
@@ -137,7 +144,7 @@ apsimOptim<-function(apsimWd, apsimExe, apsimFile, apsimVarL, Varinfo, tag, unli
     unlink(c(Fname,outFname,sumFname), recursive = FALSE)
   }
   #building output
-    output<-list("Param" = out[which(complete.cases(out)),], "Variable" = sws[, colSums(is.na(sws)) != nrow(sws)]
+    output<-list("Param" = out[which(complete.cases(out)),], "Simulations" = sws[, colSums(is.na(sws)) != nrow(sws)]
 , "Variable Info" = Varinfo,"var"=varnames,"Obs"=obs,"Itration"=i,"APfile"=apsimFile,"Gsampling"=Gibbs,"Simulation name"=Simname,
 "Elapsed time"=proc.time()-tsimstart)
 

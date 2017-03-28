@@ -1,25 +1,97 @@
 <folder version="36" creator="Apsim 7.7-r3632" name="simulations">
-  <folder name="folder1">
-    <simulation name="Continuous Maize">
-      <metfile name="met">
-        <filename name="filename" input="yes">%apsim%/Examples/MetFiles/Goond.met</filename>
-      </metfile>
-      <clock>
-        <start_date type="date" description="Enter the start date of the simulation">01/06/1985</start_date>
-        <end_date type="date" description="Enter the end date of the simulation">01/05/1987</end_date>
-      </clock>
-      <summaryfile />
-      <area name="paddock">
-        <Soil>
-          <RecordNumber>0</RecordNumber>
-          <Latitude>0</Latitude>
-          <Longitude>0</Longitude>
-          <YearOfSampling>0</YearOfSampling>
-          <InitialWater name="Initial water">
-            <FractionFull>0.00</FractionFull>
-            <PercentMethod>FilledFromTop</PercentMethod>
-          </InitialWater>
-          <Water>
+  <simulation name="Continuous Maize">
+    <metfile name="met">
+      <filename name="filename" input="yes">%apsim%/Examples/MetFiles/Goond.met</filename>
+    </metfile>
+    <clock>
+      <start_date type="date" description="Enter the start date of the simulation">01/06/1985</start_date>
+      <end_date type="date" description="Enter the end date of the simulation">01/05/1987</end_date>
+    </clock>
+    <summaryfile />
+    <area name="paddock">
+      <Soil>
+        <RecordNumber>0</RecordNumber>
+        <Latitude>0</Latitude>
+        <Longitude>0</Longitude>
+        <YearOfSampling>0</YearOfSampling>
+        <InitialWater name="Initial water">
+          <FractionFull>0.00</FractionFull>
+          <PercentMethod>FilledFromTop</PercentMethod>
+        </InitialWater>
+        <Water>
+          <Thickness>
+            <double>100</double>
+            <double>100</double>
+            <double>100</double>
+            <double>200</double>
+            <double>200</double>
+            <double>200</double>
+            <double>200</double>
+            <double>200</double>
+            <double>200</double>
+            <double>200</double>
+          </Thickness>
+          <BD>
+            <double>1.35</double>
+            <double>1.35</double>
+            <double>1.35</double>
+            <double>1.4</double>
+            <double>1.4</double>
+            <double>1.4</double>
+            <double>1.4</double>
+            <double>1.4</double>
+            <double>1.4</double>
+            <double>1.4</double>
+          </BD>
+          <AirDry>
+            <double>0.04</double>
+            <double>0.14</double>
+            <double>0.15</double>
+            <double>0.16</double>
+            <double>0.18</double>
+            <double>0.18</double>
+            <double>0.18</double>
+            <double>0.18</double>
+            <double>0.18</double>
+            <double>0.18</double>
+          </AirDry>
+          <LL15>
+            <double>0.11</double>
+            <double>0.14</double>
+            <double>0.16</double>
+            <double>0.17</double>
+            <double>0.19</double>
+            <double>0.2</double>
+            <double>0.2</double>
+            <double>0.2</double>
+            <double>0.2</double>
+            <double>0.2</double>
+          </LL15>
+          <DUL>
+            <double>0.25</double>
+            <double>0.25</double>
+            <double>0.27</double>
+            <double>0.28</double>
+            <double>0.3</double>
+            <double>0.3</double>
+            <double>0.31</double>
+            <double>0.32</double>
+            <double>0.31</double>
+            <double>0.31</double>
+          </DUL>
+          <SAT>
+            <double>0.3</double>
+            <double>0.3</double>
+            <double>0.32</double>
+            <double>0.33</double>
+            <double>0.34</double>
+            <double>0.35</double>
+            <double>0.36</double>
+            <double>0.37</double>
+            <double>0.37</double>
+            <double>0.37</double>
+          </SAT>
+          <SoilCrop name="sorg">
             <Thickness>
               <double>100</double>
               <double>100</double>
@@ -32,31 +104,7 @@
               <double>200</double>
               <double>200</double>
             </Thickness>
-            <BD>
-              <double>1.35</double>
-              <double>1.35</double>
-              <double>1.35</double>
-              <double>1.4</double>
-              <double>1.4</double>
-              <double>1.4</double>
-              <double>1.4</double>
-              <double>1.4</double>
-              <double>1.4</double>
-              <double>1.4</double>
-            </BD>
-            <AirDry>
-              <double>0.04</double>
-              <double>0.14</double>
-              <double>0.15</double>
-              <double>0.16</double>
-              <double>0.18</double>
-              <double>0.18</double>
-              <double>0.18</double>
-              <double>0.18</double>
-              <double>0.18</double>
-              <double>0.18</double>
-            </AirDry>
-            <LL15>
+            <LL>
               <double>0.11</double>
               <double>0.14</double>
               <double>0.16</double>
@@ -67,480 +115,83 @@
               <double>0.2</double>
               <double>0.2</double>
               <double>0.2</double>
-            </LL15>
-            <DUL>
-              <double>0.25</double>
-              <double>0.25</double>
-              <double>0.27</double>
-              <double>0.28</double>
-              <double>0.3</double>
-              <double>0.3</double>
-              <double>0.31</double>
-              <double>0.32</double>
-              <double>0.31</double>
-              <double>0.31</double>
-            </DUL>
-            <SAT>
-              <double>0.3</double>
-              <double>0.3</double>
-              <double>0.32</double>
-              <double>0.33</double>
-              <double>0.34</double>
-              <double>0.35</double>
-              <double>0.36</double>
-              <double>0.37</double>
-              <double>0.37</double>
-              <double>0.37</double>
-            </SAT>
-            <SoilCrop name="sorg">
-              <Thickness>
-                <double>100</double>
-                <double>100</double>
-                <double>100</double>
-                <double>200</double>
-                <double>200</double>
-                <double>200</double>
-                <double>200</double>
-                <double>200</double>
-                <double>200</double>
-                <double>200</double>
-              </Thickness>
-              <LL>
-                <double>0.11</double>
-                <double>0.14</double>
-                <double>0.16</double>
-                <double>0.17</double>
-                <double>0.19</double>
-                <double>0.2</double>
-                <double>0.2</double>
-                <double>0.2</double>
-                <double>0.2</double>
-                <double>0.2</double>
-              </LL>
-              <KL>
-                <double>0.07</double>
-                <double>0.07</double>
-                <double>0.07</double>
-                <double>0.07</double>
-                <double>0.07</double>
-                <double>0.07</double>
-                <double>0.04</double>
-                <double>0.04</double>
-                <double>0.04</double>
-                <double>0.04</double>
-              </KL>
-              <XF>
-                <double>1</double>
-                <double>1</double>
-                <double>1</double>
-                <double>1</double>
-                <double>1</double>
-                <double>1</double>
-                <double>1</double>
-                <double>1</double>
-                <double>1</double>
-                <double>1</double>
-              </XF>
-            </SoilCrop>
-            <SoilCrop name="cowpea">
-              <Thickness>
-                <double>100</double>
-                <double>100</double>
-                <double>100</double>
-                <double>200</double>
-                <double>200</double>
-                <double>200</double>
-                <double>200</double>
-                <double>200</double>
-                <double>200</double>
-                <double>200</double>
-              </Thickness>
-              <LL>
-                <double>0.11</double>
-                <double>0.14</double>
-                <double>0.16</double>
-                <double>0.17</double>
-                <double>0.19</double>
-                <double>0.2</double>
-                <double>0.2</double>
-                <double>0.2</double>
-                <double>0.2</double>
-                <double>0.2</double>
-              </LL>
-              <KL>
-                <double>0.08</double>
-                <double>0.08</double>
-                <double>0.08</double>
-                <double>0.08</double>
-                <double>0.06</double>
-                <double>0.04</double>
-                <double>0.03</double>
-                <double>0.02</double>
-                <double>0.01</double>
-                <double>0.01</double>
-              </KL>
-              <XF>
-                <double>1</double>
-                <double>1</double>
-                <double>1</double>
-                <double>1</double>
-                <double>1</double>
-                <double>1</double>
-                <double>1</double>
-                <double>1</double>
-                <double>1</double>
-                <double>1</double>
-              </XF>
-            </SoilCrop>
-            <SoilCrop name="maize">
-              <Thickness>
-                <double>100</double>
-                <double>100</double>
-                <double>100</double>
-                <double>200</double>
-                <double>200</double>
-                <double>200</double>
-                <double>200</double>
-                <double>200</double>
-                <double>200</double>
-                <double>200</double>
-              </Thickness>
-              <LL>
-                <double>0.11</double>
-                <double>0.14</double>
-                <double>0.16</double>
-                <double>0.17</double>
-                <double>0.19</double>
-                <double>0.2</double>
-                <double>0.2</double>
-                <double>0.2</double>
-                <double>0.2</double>
-                <double>0.2</double>
-              </LL>
-              <KL>
-                <double>0.08</double>
-                <double>0.08</double>
-                <double>0.08</double>
-                <double>0.08</double>
-                <double>0.06</double>
-                <double>0.04</double>
-                <double>0.03</double>
-                <double>0.02</double>
-                <double>0.01</double>
-                <double>0.01</double>
-              </KL>
-              <XF>
-                <double>1</double>
-                <double>1</double>
-                <double>1</double>
-                <double>1</double>
-                <double>1</double>
-                <double>1</double>
-                <double>1</double>
-                <double>1</double>
-                <double>1</double>
-                <double>1</double>
-              </XF>
-            </SoilCrop>
-            <SoilCrop name="mucuna">
-              <Thickness>
-                <double>100</double>
-                <double>100</double>
-                <double>100</double>
-                <double>200</double>
-                <double>200</double>
-                <double>200</double>
-                <double>200</double>
-                <double>200</double>
-                <double>200</double>
-                <double>200</double>
-              </Thickness>
-              <LL>
-                <double>0.11</double>
-                <double>0.14</double>
-                <double>0.16</double>
-                <double>0.17</double>
-                <double>0.19</double>
-                <double>0.2</double>
-                <double>0.2</double>
-                <double>0.2</double>
-                <double>0.2</double>
-                <double>0.2</double>
-              </LL>
-              <KL>
-                <double>0.08</double>
-                <double>0.08</double>
-                <double>0.08</double>
-                <double>0.08</double>
-                <double>0.06</double>
-                <double>0.04</double>
-                <double>0.03</double>
-                <double>0.02</double>
-                <double>0.01</double>
-                <double>0.01</double>
-              </KL>
-              <XF>
-                <double>1</double>
-                <double>1</double>
-                <double>1</double>
-                <double>1</double>
-                <double>1</double>
-                <double>1</double>
-                <double>1</double>
-                <double>1</double>
-                <double>1</double>
-                <double>1</double>
-              </XF>
-            </SoilCrop>
-            <SoilCrop name="peanut">
-              <Thickness>
-                <double>100</double>
-                <double>100</double>
-                <double>100</double>
-                <double>200</double>
-                <double>200</double>
-                <double>200</double>
-                <double>200</double>
-                <double>200</double>
-                <double>200</double>
-                <double>200</double>
-              </Thickness>
-              <LL>
-                <double>0.11</double>
-                <double>0.14</double>
-                <double>0.16</double>
-                <double>0.17</double>
-                <double>0.19</double>
-                <double>0.2</double>
-                <double>0.2</double>
-                <double>0.2</double>
-                <double>0.2</double>
-                <double>0.2</double>
-              </LL>
-              <KL>
-                <double>0.08</double>
-                <double>0.08</double>
-                <double>0.08</double>
-                <double>0.08</double>
-                <double>0.06</double>
-                <double>0.04</double>
-                <double>0.03</double>
-                <double>0.02</double>
-                <double>0.01</double>
-                <double>0.01</double>
-              </KL>
-              <XF>
-                <double>1</double>
-                <double>1</double>
-                <double>1</double>
-                <double>1</double>
-                <double>1</double>
-                <double>1</double>
-                <double>1</double>
-                <double>1</double>
-                <double>1</double>
-                <double>1</double>
-              </XF>
-            </SoilCrop>
-            <SoilCrop name="pigeonp">
-              <Thickness>
-                <double>100</double>
-                <double>100</double>
-                <double>100</double>
-                <double>200</double>
-                <double>200</double>
-                <double>200</double>
-                <double>200</double>
-                <double>200</double>
-                <double>200</double>
-                <double>200</double>
-              </Thickness>
-              <LL>
-                <double>0.11</double>
-                <double>0.14</double>
-                <double>0.16</double>
-                <double>0.17</double>
-                <double>0.19</double>
-                <double>0.2</double>
-                <double>0.2</double>
-                <double>0.2</double>
-                <double>0.2</double>
-                <double>0.2</double>
-              </LL>
-              <KL>
-                <double>0.08</double>
-                <double>0.08</double>
-                <double>0.08</double>
-                <double>0.08</double>
-                <double>0.06</double>
-                <double>0.04</double>
-                <double>0.03</double>
-                <double>0.02</double>
-                <double>0.01</double>
-                <double>0.01</double>
-              </KL>
-              <XF>
-                <double>1</double>
-                <double>1</double>
-                <double>1</double>
-                <double>1</double>
-                <double>1</double>
-                <double>1</double>
-                <double>1</double>
-                <double>1</double>
-                <double>1</double>
-                <double>1</double>
-              </XF>
-            </SoilCrop>
-            <SoilCrop name="soybean">
-              <Thickness>
-                <double>100</double>
-                <double>100</double>
-                <double>100</double>
-                <double>200</double>
-                <double>200</double>
-                <double>200</double>
-                <double>200</double>
-                <double>200</double>
-                <double>200</double>
-                <double>200</double>
-              </Thickness>
-              <LL>
-                <double>0.11</double>
-                <double>0.14</double>
-                <double>0.16</double>
-                <double>0.17</double>
-                <double>0.19</double>
-                <double>0.2</double>
-                <double>0.2</double>
-                <double>0.2</double>
-                <double>0.2</double>
-                <double>0.2</double>
-              </LL>
-              <KL>
-                <double>0.08</double>
-                <double>0.08</double>
-                <double>0.08</double>
-                <double>0.08</double>
-                <double>0.06</double>
-                <double>0.04</double>
-                <double>0.03</double>
-                <double>0.02</double>
-                <double>0.01</double>
-                <double>0.01</double>
-              </KL>
-              <XF>
-                <double>1</double>
-                <double>1</double>
-                <double>1</double>
-                <double>1</double>
-                <double>1</double>
-                <double>1</double>
-                <double>1</double>
-                <double>1</double>
-                <double>1</double>
-                <double>1</double>
-              </XF>
-            </SoilCrop>
-          </Water>
-          <SoilWater>
-            <SummerCona>2.5</SummerCona>
-            <SummerU>9</SummerU>
-            <SummerDate>1-Nov</SummerDate>
-            <WinterCona>2.5</WinterCona>
-            <WinterU>9</WinterU>
-            <WinterDate>1-Apr</WinterDate>
-            <DiffusConst>88</DiffusConst>
-            <DiffusSlope>35.4</DiffusSlope>
-            <Salb>0.13</Salb>
-            <CN2Bare>75</CN2Bare>
-            <CNRed>20</CNRed>
-            <CNCov>0.8</CNCov>
-            <Slope>NaN</Slope>
-            <DischargeWidth>NaN</DischargeWidth>
-            <CatchmentArea>NaN</CatchmentArea>
-            <MaxPond>NaN</MaxPond>
-            <Thickness>
-              <double>100</double>
-              <double>100</double>
-              <double>100</double>
-              <double>200</double>
-              <double>200</double>
-              <double>200</double>
-              <double>200</double>
-              <double>200</double>
-              <double>200</double>
-              <double>200</double>
-            </Thickness>
-            <SWCON>
-              <double>0.5</double>
-              <double>0.5</double>
-              <double>0.5</double>
-              <double>0.5</double>
-              <double>0.5</double>
-              <double>0.5</double>
-              <double>0.5</double>
-              <double>0.5</double>
-              <double>0.5</double>
-              <double>0.5</double>
-            </SWCON>
-          </SoilWater>
-          <SoilOrganicMatter>
-            <RootCN>45</RootCN>
-            <RootWt>1000</RootWt>
-            <SoilCN>14.5</SoilCN>
-            <EnrACoeff>7.4</EnrACoeff>
-            <EnrBCoeff>0.2</EnrBCoeff>
-            <Thickness>
-              <double>100</double>
-              <double>100</double>
-              <double>100</double>
-              <double>200</double>
-              <double>200</double>
-              <double>200</double>
-              <double>200</double>
-              <double>200</double>
-              <double>200</double>
-              <double>200</double>
-            </Thickness>
-            <OC>
-              <double>1.2</double>
+            </LL>
+            <KL>
+              <double>0.07</double>
+              <double>0.07</double>
+              <double>0.07</double>
+              <double>0.07</double>
+              <double>0.07</double>
+              <double>0.07</double>
+              <double>0.04</double>
+              <double>0.04</double>
+              <double>0.04</double>
+              <double>0.04</double>
+            </KL>
+            <XF>
               <double>1</double>
-              <double>0.86</double>
-              <double>0.83</double>
-              <double>0.58</double>
-              <double>0.54</double>
-              <double>0.47</double>
-              <double>0.5</double>
-              <double>0.5</double>
-              <double>0.5</double>
-            </OC>
-            <FBiom>
+              <double>1</double>
+              <double>1</double>
+              <double>1</double>
+              <double>1</double>
+              <double>1</double>
+              <double>1</double>
+              <double>1</double>
+              <double>1</double>
+              <double>1</double>
+            </XF>
+          </SoilCrop>
+          <SoilCrop name="cowpea">
+            <Thickness>
+              <double>100</double>
+              <double>100</double>
+              <double>100</double>
+              <double>200</double>
+              <double>200</double>
+              <double>200</double>
+              <double>200</double>
+              <double>200</double>
+              <double>200</double>
+              <double>200</double>
+            </Thickness>
+            <LL>
+              <double>0.11</double>
+              <double>0.14</double>
+              <double>0.16</double>
+              <double>0.17</double>
+              <double>0.19</double>
+              <double>0.2</double>
+              <double>0.2</double>
+              <double>0.2</double>
+              <double>0.2</double>
+              <double>0.2</double>
+            </LL>
+            <KL>
+              <double>0.08</double>
+              <double>0.08</double>
+              <double>0.08</double>
+              <double>0.08</double>
+              <double>0.06</double>
+              <double>0.04</double>
+              <double>0.03</double>
               <double>0.02</double>
               <double>0.01</double>
               <double>0.01</double>
-              <double>0.01</double>
-              <double>0.01</double>
-              <double>0.01</double>
-              <double>0.01</double>
-              <double>0.01</double>
-              <double>0.01</double>
-              <double>0.01</double>
-            </FBiom>
-            <FInert>
-              <double>0.6</double>
-              <double>0.65</double>
-              <double>0.7</double>
-              <double>0.75</double>
-              <double>0.8</double>
-              <double>0.85</double>
-              <double>0.93</double>
-              <double>0.93</double>
-              <double>0.93</double>
-              <double>0.93</double>
-            </FInert>
-          </SoilOrganicMatter>
-          <Analysis>
+            </KL>
+            <XF>
+              <double>1</double>
+              <double>1</double>
+              <double>1</double>
+              <double>1</double>
+              <double>1</double>
+              <double>1</double>
+              <double>1</double>
+              <double>1</double>
+              <double>1</double>
+              <double>1</double>
+            </XF>
+          </SoilCrop>
+          <SoilCrop name="maize">
             <Thickness>
               <double>100</double>
               <double>100</double>
@@ -553,21 +204,44 @@
               <double>200</double>
               <double>200</double>
             </Thickness>
-            <PH>
-              <double>6</double>
-              <double>6</double>
-              <double>6</double>
-              <double>6.2</double>
-              <double>6.5</double>
-              <double>6.7</double>
-              <double>6.8</double>
-              <double>6.8</double>
-              <double>6.8</double>
-              <double>6.8</double>
-            </PH>
-          </Analysis>
-          <Sample name="Initial nitrogen">
-            <Date type="date" description="Sample date:" />
+            <LL>
+              <double>0.11</double>
+              <double>0.14</double>
+              <double>0.16</double>
+              <double>0.17</double>
+              <double>0.19</double>
+              <double>0.2</double>
+              <double>0.2</double>
+              <double>0.2</double>
+              <double>0.2</double>
+              <double>0.2</double>
+            </LL>
+            <KL>
+              <double>0.08</double>
+              <double>0.08</double>
+              <double>0.08</double>
+              <double>0.08</double>
+              <double>0.06</double>
+              <double>0.04</double>
+              <double>0.03</double>
+              <double>0.02</double>
+              <double>0.01</double>
+              <double>0.01</double>
+            </KL>
+            <XF>
+              <double>1</double>
+              <double>1</double>
+              <double>1</double>
+              <double>1</double>
+              <double>1</double>
+              <double>1</double>
+              <double>1</double>
+              <double>1</double>
+              <double>1</double>
+              <double>1</double>
+            </XF>
+          </SoilCrop>
+          <SoilCrop name="mucuna">
             <Thickness>
               <double>100</double>
               <double>100</double>
@@ -580,101 +254,426 @@
               <double>200</double>
               <double>200</double>
             </Thickness>
-            <NO3>
-              <double>0.237</double>
-              <double>0.712</double>
-              <double>0.712</double>
-              <double>0.554</double>
-              <double>0.395</double>
-              <double>0.395</double>
-              <double>0.237</double>
-              <double>0.237</double>
-              <double>0.158</double>
-              <double>0.079</double>
-            </NO3>
-            <NH4>
-              <double>0.194</double>
-              <double>0.484</double>
-              <double>0.290</double>
-              <double>0.290</double>
-              <double>0.290</double>
-              <double>0.290</double>
-              <double>0.290</double>
-              <double>0.290</double>
-              <double>0.290</double>
-              <double>0.290</double>
-            </NH4>
-          </Sample>
-        </Soil>
-        <surfaceom name="SurfaceOrganicMatter">
-          <PoolName description="Organic Matter pool name">wheat</PoolName>
-          <type description="Organic Matter type">wheat</type>
-          <mass description="Initial surface residue (kg/ha)">0</mass>
-          <cnr description="C:N ratio of initial residue">80.0</cnr>
-          <standing_fraction description="Fraction of residue standing">0.0</standing_fraction>
-        </surfaceom>
-        <fertiliser />
-        <maize />
-        <folder name="Manager folder">
-          <manager2 name="biochar 5v4">
-            <ui>
-              <category5 type="category" description="Management" />
-              <date_of_application type="text" description="Date of biochar application (mm/dd/yyyy)">03/01/1986</date_of_application>
-              <biochar_added type="float" description="amount of biochar applied (kg/ha)">80000</biochar_added>
-              <incorp_depth type="text" description="Biochar incorporation depth (mm): ">100</incorp_depth>
-              <biochar_loss type="float" description="fraction of biochar lost during application (0-1)">0.02</biochar_loss>
-              <category6 type="category" description="Biochar properties" />
-              <feedbio type="list" listvalues="Manure,Corn,Oak,FoodWaste,Grass,Pine,Polutry,Hazelnut,Other" description="Feedstock class">Corn</feedbio>
-              <PTemp type="text" description="Highest pyrolysis temperature ">450</PTemp>
-              <MRT1 type="float" description="mean residence time for labile biochar pool (years)">1</MRT1>
-              <MRT2 type="float" description="mean residence time  for resistant biochar pool (years)">100</MRT2>
-              <ef_biochar type="float" description="fraction of decomposed biochar that goes to OC pools (0-1) (biochar efficiency)">0.4</ef_biochar>
-              <fr_biochar_biom type="int" description="fraction of decomposed biochar that goes to biom (0-1)">0.05</fr_biochar_biom>
-              <dul_qual type="text" description="Slope of dul quality equation (default 0.33)">0.3</dul_qual>
-              <bd_qual type="text" description="Slope of bd quality equation (default 0.33)">0.15</bd_qual>
-              <cnrf_bc_coeff type="text" description="Biochar cnrf coefficient (0-1)">0.69</cnrf_bc_coeff>
-              <cnrf_bc_optcn type="text" description="Optimum CN ratio for bc">25</cnrf_bc_optcn>
-              <bc_wfps_factor type="text" description="Biochar WFPS factor (0-1)">1</bc_wfps_factor>
-              <nh4_adsorption type="text" description="Biochar nh4 absorption coefficient (Langmuir)">0.006</nh4_adsorption>
-              <nh4_desorption type="text" description="Biochar nh4 desorption coefficient (Langmuir)">0.06</nh4_desorption>
-              <Categorypriming type="category" description="Priming effects" />
-              <prim_biom type="float" description="priming coefficient for biom pool (-1 to 1) use 0.05">0</prim_biom>
-              <prim_hum type="float" description="priming coefficient for hum pool (-1 to 1) use 0.05">0</prim_hum>
-              <prim_cell type="float" description="priming coefficient for cell pool (-1 to 1) use 0.08">0</prim_cell>
-              <prim_carb type="float" description="priming coefficient for carb pool (-1 to 1) use 0.08">0</prim_carb>
-              <prim_lign type="float" description="priming coefficient for lign pool (-1 to 1) use 0.08">0</prim_lign>
-              <prim_ef type="float" description="negative priming coefficient for internal C partitioning (use 0.1 for 20 Mg), biom">0</prim_ef>
-              <prim_fr type="float" description="negative priming coefficient for internal C partioning (use -0.1), biom">0</prim_fr>
-              <prim_ef_fom type="text" description="negative priming for internal C partitioning (use 0.1 for 20 mg),fom">0</prim_ef_fom>
-              <prim_fr_fom type="text" description="negative priming for internal C partitioning (use -0.1 for 20 mg), fom">0</prim_fr_fom>
-              <category2 type="category" description="Tillage info" />
-              <tillage type="text" description="% BD reduction due to tillage">0.8</tillage>
-              <category3 type="category" description="Soil information" />
-              <sand type="float" description="sand (0-1)">0.41</sand>
-              <clay type="float" description="clay (0-1) ">0.21</clay>
-              <biom_cn type="text" description="C/N ratio of biom pool:">8</biom_cn>
-              <soil_cn type="text" description="C/N ratio of soil stuff:">12</soil_cn>
-              <soil_order type="list" listvalues="Aridisol,Entisol,Gelisol,Inceptisol,Mollisol,Vertisol,Histosol,Alfisol,Oxisol,Spodosol,Ultisol" description="Order of the soil">Mollisol</soil_order>
-              <nclay_portion type="text" description="Portion of soil clay that is nclay (0-1)">0.95</nclay_portion>
-              <uph type="text" description="Soil upper ph">8.3</uph>
-              <lph type="text" description="Soil lower ph">3.5</lph>
-              <ab_val type="text" description="Acid - Base value">0</ab_val>
-              <bot_slope type="text" description="Unit conversion for titration curve (use 10)">10</bot_slope>
-              <category type="category" description="Switches for various biochar components (development purposes)" />
-              <decomp_switch type="list" listvalues="on,off" description="Priming effects? (on/off)">on</decomp_switch>
-              <nitrification_switch type="list" listvalues="on,off" description="Nitrification effects? (on/off)">on</nitrification_switch>
-              <ph_switch type="list" listvalues="on,off" description="PH effects ? (on/off)">on</ph_switch>
-              <ll_switch type="list" listvalues="on,off" description="LL and CLL effects? (on/off)">on</ll_switch>
-              <dul_switch type="list" listvalues="on,off" description="DUL effects ? (on/off)">on</dul_switch>
-              <xf_switch type="list" listvalues="on,off" description="XF effects? (on/off)">off</xf_switch>
-              <kl_switch type="list" listvalues="on,off" description="KL effects? (on/off)">off</kl_switch>
-              <bd_switch type="list" listvalues="on,off" description="BD effects? (on/off) (under development)">on</bd_switch>
-              <biochar_c_switch type="list" listvalues="on,off" description="Biochar module (on/off)">on</biochar_c_switch>
-              <swcon_switch type="list" listvalues="on,off" description="SWCOM effects (on/off)">off</swcon_switch>
-              <ks_switch type="list" listvalues="on,off" description="Ksat effects ? (on/off)">off</ks_switch>
-              <sat_switch type="list" listvalues="on,off" description="SAT effects? (on/off)">on</sat_switch>
-            </ui>
-            <text>using System;
+            <LL>
+              <double>0.11</double>
+              <double>0.14</double>
+              <double>0.16</double>
+              <double>0.17</double>
+              <double>0.19</double>
+              <double>0.2</double>
+              <double>0.2</double>
+              <double>0.2</double>
+              <double>0.2</double>
+              <double>0.2</double>
+            </LL>
+            <KL>
+              <double>0.08</double>
+              <double>0.08</double>
+              <double>0.08</double>
+              <double>0.08</double>
+              <double>0.06</double>
+              <double>0.04</double>
+              <double>0.03</double>
+              <double>0.02</double>
+              <double>0.01</double>
+              <double>0.01</double>
+            </KL>
+            <XF>
+              <double>1</double>
+              <double>1</double>
+              <double>1</double>
+              <double>1</double>
+              <double>1</double>
+              <double>1</double>
+              <double>1</double>
+              <double>1</double>
+              <double>1</double>
+              <double>1</double>
+            </XF>
+          </SoilCrop>
+          <SoilCrop name="peanut">
+            <Thickness>
+              <double>100</double>
+              <double>100</double>
+              <double>100</double>
+              <double>200</double>
+              <double>200</double>
+              <double>200</double>
+              <double>200</double>
+              <double>200</double>
+              <double>200</double>
+              <double>200</double>
+            </Thickness>
+            <LL>
+              <double>0.11</double>
+              <double>0.14</double>
+              <double>0.16</double>
+              <double>0.17</double>
+              <double>0.19</double>
+              <double>0.2</double>
+              <double>0.2</double>
+              <double>0.2</double>
+              <double>0.2</double>
+              <double>0.2</double>
+            </LL>
+            <KL>
+              <double>0.08</double>
+              <double>0.08</double>
+              <double>0.08</double>
+              <double>0.08</double>
+              <double>0.06</double>
+              <double>0.04</double>
+              <double>0.03</double>
+              <double>0.02</double>
+              <double>0.01</double>
+              <double>0.01</double>
+            </KL>
+            <XF>
+              <double>1</double>
+              <double>1</double>
+              <double>1</double>
+              <double>1</double>
+              <double>1</double>
+              <double>1</double>
+              <double>1</double>
+              <double>1</double>
+              <double>1</double>
+              <double>1</double>
+            </XF>
+          </SoilCrop>
+          <SoilCrop name="pigeonp">
+            <Thickness>
+              <double>100</double>
+              <double>100</double>
+              <double>100</double>
+              <double>200</double>
+              <double>200</double>
+              <double>200</double>
+              <double>200</double>
+              <double>200</double>
+              <double>200</double>
+              <double>200</double>
+            </Thickness>
+            <LL>
+              <double>0.11</double>
+              <double>0.14</double>
+              <double>0.16</double>
+              <double>0.17</double>
+              <double>0.19</double>
+              <double>0.2</double>
+              <double>0.2</double>
+              <double>0.2</double>
+              <double>0.2</double>
+              <double>0.2</double>
+            </LL>
+            <KL>
+              <double>0.08</double>
+              <double>0.08</double>
+              <double>0.08</double>
+              <double>0.08</double>
+              <double>0.06</double>
+              <double>0.04</double>
+              <double>0.03</double>
+              <double>0.02</double>
+              <double>0.01</double>
+              <double>0.01</double>
+            </KL>
+            <XF>
+              <double>1</double>
+              <double>1</double>
+              <double>1</double>
+              <double>1</double>
+              <double>1</double>
+              <double>1</double>
+              <double>1</double>
+              <double>1</double>
+              <double>1</double>
+              <double>1</double>
+            </XF>
+          </SoilCrop>
+          <SoilCrop name="soybean">
+            <Thickness>
+              <double>100</double>
+              <double>100</double>
+              <double>100</double>
+              <double>200</double>
+              <double>200</double>
+              <double>200</double>
+              <double>200</double>
+              <double>200</double>
+              <double>200</double>
+              <double>200</double>
+            </Thickness>
+            <LL>
+              <double>0.11</double>
+              <double>0.14</double>
+              <double>0.16</double>
+              <double>0.17</double>
+              <double>0.19</double>
+              <double>0.2</double>
+              <double>0.2</double>
+              <double>0.2</double>
+              <double>0.2</double>
+              <double>0.2</double>
+            </LL>
+            <KL>
+              <double>0.08</double>
+              <double>0.08</double>
+              <double>0.08</double>
+              <double>0.08</double>
+              <double>0.06</double>
+              <double>0.04</double>
+              <double>0.03</double>
+              <double>0.02</double>
+              <double>0.01</double>
+              <double>0.01</double>
+            </KL>
+            <XF>
+              <double>1</double>
+              <double>1</double>
+              <double>1</double>
+              <double>1</double>
+              <double>1</double>
+              <double>1</double>
+              <double>1</double>
+              <double>1</double>
+              <double>1</double>
+              <double>1</double>
+            </XF>
+          </SoilCrop>
+        </Water>
+        <SoilWater>
+          <SummerCona>2.5</SummerCona>
+          <SummerU>9</SummerU>
+          <SummerDate>1-Nov</SummerDate>
+          <WinterCona>2.5</WinterCona>
+          <WinterU>9</WinterU>
+          <WinterDate>1-Apr</WinterDate>
+          <DiffusConst>88</DiffusConst>
+          <DiffusSlope>35.4</DiffusSlope>
+          <Salb>0.13</Salb>
+          <CN2Bare>75</CN2Bare>
+          <CNRed>20</CNRed>
+          <CNCov>0.8</CNCov>
+          <Slope>NaN</Slope>
+          <DischargeWidth>NaN</DischargeWidth>
+          <CatchmentArea>NaN</CatchmentArea>
+          <MaxPond>NaN</MaxPond>
+          <Thickness>
+            <double>100</double>
+            <double>100</double>
+            <double>100</double>
+            <double>200</double>
+            <double>200</double>
+            <double>200</double>
+            <double>200</double>
+            <double>200</double>
+            <double>200</double>
+            <double>200</double>
+          </Thickness>
+          <SWCON>
+            <double>0.5</double>
+            <double>0.5</double>
+            <double>0.5</double>
+            <double>0.5</double>
+            <double>0.5</double>
+            <double>0.5</double>
+            <double>0.5</double>
+            <double>0.5</double>
+            <double>0.5</double>
+            <double>0.5</double>
+          </SWCON>
+        </SoilWater>
+        <SoilOrganicMatter>
+          <RootCN>45</RootCN>
+          <RootWt>1000</RootWt>
+          <SoilCN>14.5</SoilCN>
+          <EnrACoeff>7.4</EnrACoeff>
+          <EnrBCoeff>0.2</EnrBCoeff>
+          <Thickness>
+            <double>100</double>
+            <double>100</double>
+            <double>100</double>
+            <double>200</double>
+            <double>200</double>
+            <double>200</double>
+            <double>200</double>
+            <double>200</double>
+            <double>200</double>
+            <double>200</double>
+          </Thickness>
+          <OC>
+            <double>1.2</double>
+            <double>1</double>
+            <double>0.86</double>
+            <double>0.83</double>
+            <double>0.58</double>
+            <double>0.54</double>
+            <double>0.47</double>
+            <double>0.5</double>
+            <double>0.5</double>
+            <double>0.5</double>
+          </OC>
+          <FBiom>
+            <double>0.02</double>
+            <double>0.01</double>
+            <double>0.01</double>
+            <double>0.01</double>
+            <double>0.01</double>
+            <double>0.01</double>
+            <double>0.01</double>
+            <double>0.01</double>
+            <double>0.01</double>
+            <double>0.01</double>
+          </FBiom>
+          <FInert>
+            <double>0.6</double>
+            <double>0.65</double>
+            <double>0.7</double>
+            <double>0.75</double>
+            <double>0.8</double>
+            <double>0.85</double>
+            <double>0.93</double>
+            <double>0.93</double>
+            <double>0.93</double>
+            <double>0.93</double>
+          </FInert>
+        </SoilOrganicMatter>
+        <Analysis>
+          <Thickness>
+            <double>100</double>
+            <double>100</double>
+            <double>100</double>
+            <double>200</double>
+            <double>200</double>
+            <double>200</double>
+            <double>200</double>
+            <double>200</double>
+            <double>200</double>
+            <double>200</double>
+          </Thickness>
+          <PH>
+            <double>6</double>
+            <double>6</double>
+            <double>6</double>
+            <double>6.2</double>
+            <double>6.5</double>
+            <double>6.7</double>
+            <double>6.8</double>
+            <double>6.8</double>
+            <double>6.8</double>
+            <double>6.8</double>
+          </PH>
+        </Analysis>
+        <Sample name="Initial nitrogen">
+          <Date type="date" description="Sample date:" />
+          <Thickness>
+            <double>100</double>
+            <double>100</double>
+            <double>100</double>
+            <double>200</double>
+            <double>200</double>
+            <double>200</double>
+            <double>200</double>
+            <double>200</double>
+            <double>200</double>
+            <double>200</double>
+          </Thickness>
+          <NO3>
+            <double>0.237</double>
+            <double>0.712</double>
+            <double>0.712</double>
+            <double>0.554</double>
+            <double>0.395</double>
+            <double>0.395</double>
+            <double>0.237</double>
+            <double>0.237</double>
+            <double>0.158</double>
+            <double>0.079</double>
+          </NO3>
+          <NH4>
+            <double>0.194</double>
+            <double>0.484</double>
+            <double>0.290</double>
+            <double>0.290</double>
+            <double>0.290</double>
+            <double>0.290</double>
+            <double>0.290</double>
+            <double>0.290</double>
+            <double>0.290</double>
+            <double>0.290</double>
+          </NH4>
+        </Sample>
+      </Soil>
+      <surfaceom name="SurfaceOrganicMatter">
+        <PoolName description="Organic Matter pool name">wheat</PoolName>
+        <type description="Organic Matter type">wheat</type>
+        <mass description="Initial surface residue (kg/ha)">0</mass>
+        <cnr description="C:N ratio of initial residue">80.0</cnr>
+        <standing_fraction description="Fraction of residue standing">0.0</standing_fraction>
+      </surfaceom>
+      <fertiliser />
+      <maize />
+      <folder name="Manager folder">
+        <manager2 name="biochar 5v4">
+          <ui>
+            <category5 type="category" description="Management" />
+            <date_of_application type="text" description="Date of biochar application (mm/dd/yyyy)">03/01/1986</date_of_application>
+            <biochar_added type="float" description="amount of biochar applied (kg/ha)">80000</biochar_added>
+            <incorp_depth type="text" description="Biochar incorporation depth (mm): ">100</incorp_depth>
+            <biochar_loss type="float" description="fraction of biochar lost during application (0-1)">0.02</biochar_loss>
+            <category6 type="category" description="Biochar properties" />
+            <feedbio type="list" listvalues="Manure,Corn,Oak,FoodWaste,Grass,Pine,Polutry,Hazelnut,Other" description="Feedstock class">Corn</feedbio>
+            <PTemp type="text" description="Highest pyrolysis temperature ">450</PTemp>
+            <MRT1 type="float" description="mean residence time for labile biochar pool (years)">1</MRT1>
+            <MRT2 type="float" description="mean residence time  for resistant biochar pool (years)">100</MRT2>
+            <ef_biochar type="float" description="fraction of decomposed biochar that goes to OC pools (0-1) (biochar efficiency)">0.4</ef_biochar>
+            <fr_biochar_biom type="int" description="fraction of decomposed biochar that goes to biom (0-1)">0.05</fr_biochar_biom>
+            <dul_qual type="text" description="Slope of dul quality equation (default 0.33)">0.3</dul_qual>
+            <bd_qual type="text" description="Slope of bd quality equation (default 0.33)">0.15</bd_qual>
+            <cnrf_bc_coeff type="text" description="Biochar cnrf coefficient (0-1)">0.69</cnrf_bc_coeff>
+            <cnrf_bc_optcn type="text" description="Optimum CN ratio for bc">25</cnrf_bc_optcn>
+            <bc_wfps_factor type="text" description="Biochar WFPS factor (0-1)">1</bc_wfps_factor>
+            <nh4_adsorption type="text" description="Biochar nh4 absorption coefficient (Langmuir)">0.006</nh4_adsorption>
+            <nh4_desorption type="text" description="Biochar nh4 desorption coefficient (Langmuir)">0.06</nh4_desorption>
+            <Categorypriming type="category" description="Priming effects" />
+            <prim_biom type="float" description="priming coefficient for biom pool (-1 to 1) use 0.05">0</prim_biom>
+            <prim_hum type="float" description="priming coefficient for hum pool (-1 to 1) use 0.05">0</prim_hum>
+            <prim_cell type="float" description="priming coefficient for cell pool (-1 to 1) use 0.08">0</prim_cell>
+            <prim_carb type="float" description="priming coefficient for carb pool (-1 to 1) use 0.08">0</prim_carb>
+            <prim_lign type="float" description="priming coefficient for lign pool (-1 to 1) use 0.08">0</prim_lign>
+            <prim_ef type="float" description="negative priming coefficient for internal C partitioning (use 0.1 for 20 Mg), biom">0</prim_ef>
+            <prim_fr type="float" description="negative priming coefficient for internal C partioning (use -0.1), biom">0</prim_fr>
+            <prim_ef_fom type="text" description="negative priming for internal C partitioning (use 0.1 for 20 mg),fom">0</prim_ef_fom>
+            <prim_fr_fom type="text" description="negative priming for internal C partitioning (use -0.1 for 20 mg), fom">0</prim_fr_fom>
+            <category2 type="category" description="Tillage info" />
+            <tillage type="text" description="% BD reduction due to tillage">0.8</tillage>
+            <category3 type="category" description="Soil information" />
+            <sand type="float" description="sand (0-1)">0.41</sand>
+            <clay type="float" description="clay (0-1) ">0.21</clay>
+            <biom_cn type="text" description="C/N ratio of biom pool:">8</biom_cn>
+            <soil_cn type="text" description="C/N ratio of soil stuff:">12</soil_cn>
+            <soil_order type="list" listvalues="Aridisol,Entisol,Gelisol,Inceptisol,Mollisol,Vertisol,Histosol,Alfisol,Oxisol,Spodosol,Ultisol" description="Order of the soil">Mollisol</soil_order>
+            <nclay_portion type="text" description="Portion of soil clay that is nclay (0-1)">0.95</nclay_portion>
+            <uph type="text" description="Soil upper ph">8.3</uph>
+            <lph type="text" description="Soil lower ph">3.5</lph>
+            <ab_val type="text" description="Acid - Base value">0</ab_val>
+            <bot_slope type="text" description="Unit conversion for titration curve (use 10)">10</bot_slope>
+            <category type="category" description="Switches for various biochar components (development purposes)" />
+            <decomp_switch type="list" listvalues="on,off" description="Priming effects? (on/off)">on</decomp_switch>
+            <nitrification_switch type="list" listvalues="on,off" description="Nitrification effects? (on/off)">on</nitrification_switch>
+            <ph_switch type="list" listvalues="on,off" description="PH effects ? (on/off)">on</ph_switch>
+            <ll_switch type="list" listvalues="on,off" description="LL and CLL effects? (on/off)">on</ll_switch>
+            <dul_switch type="list" listvalues="on,off" description="DUL effects ? (on/off)">on</dul_switch>
+            <xf_switch type="list" listvalues="on,off" description="XF effects? (on/off)">off</xf_switch>
+            <kl_switch type="list" listvalues="on,off" description="KL effects? (on/off)">off</kl_switch>
+            <bd_switch type="list" listvalues="on,off" description="BD effects? (on/off) (under development)">on</bd_switch>
+            <biochar_c_switch type="list" listvalues="on,off" description="Biochar module (on/off)">on</biochar_c_switch>
+            <swcon_switch type="list" listvalues="on,off" description="SWCOM effects (on/off)">off</swcon_switch>
+            <ks_switch type="list" listvalues="on,off" description="Ksat effects ? (on/off)">off</ks_switch>
+            <sat_switch type="list" listvalues="on,off" description="SAT effects? (on/off)">on</sat_switch>
+          </ui>
+          <text>using System;
 
 using ModelFramework;
 
@@ -1822,73 +1821,73 @@ public class Script
   
 
 }</text>
-          </manager2>
-          <manager name="Sow using a variable rule with intercropping">
-            <ui>
-              <category description="Crop properties" type="category" />
-              <crop type="crop" description="Name of this crop">maize</crop>
-              <cultivar1 type="cultivars" description="Enter cultivar : ">sc401</cultivar1>
-              <cropmethod type="list" listvalues="sole,intercrop" description="Method of cropping">sole</cropmethod>
-              <rotation_exclude type="yesno" description="Exclude from rotation sequence">no</rotation_exclude>
-              <category description="Sowing criteria" type="category" />
-              <date1 type="ddmmmdate" description="Enter sowing window START date (dd-mmm)">1-nov</date1>
-              <date2 type="ddmmmdate" description="Enter sowing window END date (dd-mmm)">30-dec</date2>
-              <must_sow type="yesno" description="Must Sow">no</must_sow>
-              <rain_amount type="text" description="Enter amount of cumulative rainfall (mm)">20</rain_amount>
-              <rain_days type="text" description="Enter number of days to accumulate rainfall (days)">5</rain_days>
-              <esw_amount type="text" description="Enter amount of soil water (mm)">30</esw_amount>
-              <sow_opp type="text" description="Enter sowing opportunity number to sow on (1..n)">1</sow_opp>
-              <surface_up type="text" description="Enter upper limit of sw in top layer (0-2) (mm esw/mm soil)">2</surface_up>
-              <surface_low type="text" description="Enter lower limit of sw in top layer (0-1) (mm esw/mm soil)">0</surface_low>
-              <category description="Sowing specs" type="category" />
-              <density type="text" description="Enter sowing density  (plants/m2)">2.2</density>
-              <depth type="text" description="Enter sowing depth  (mm)">100</depth>
-              <row_spacing type="text" description="Enter row spacing  (mm) (m for maize and sorghum)">0.9</row_spacing>
-              <category description="Sorghum specs" type="category" />
-              <ftn type="text" description="Enter Fertile Tiller No. : ">1</ftn>
-              <skiprow type="list" listvalues="solid, single, double" description="Skip row : ">solid</skiprow>
-              <category description="Starter fertiliser application" type="category" />
-              <fert_amount_sow type="text" description="Amount of starter fertiliser at sowing (kg/ha)">0</fert_amount_sow>
-              <fert_type_sow type="list" listvalues="NO3_N, NH4_N, NH4NO3, urea_N, urea_no3, urea" description="Type">urea_N</fert_type_sow>
-              <category description="TopDress fertiliser application" type="category" />
-              <fert_days_TopDress type="text" description="Enter number of days after sowing to apply top-dress fertiliser (days)">35</fert_days_TopDress>
-              <fert_amount_TopDress type="text" description="Amount of TopDress fertiliser (kg/ha)">27</fert_amount_TopDress>
-              <fert_type_TopDress type="list" listvalues="NO3_N, NH4_N, NH4NO3, urea_N, urea_no3, urea" description="Type"> NH4NO3</fert_type_TopDress>
-              <category description="Pre-sowing manure application" type="category" />
-              <surfaceommodule_pre_sow type="modulename" description="Module used to apply the manure : ">SurfaceOrganicMatter</surfaceommodule_pre_sow>
-              <manure_days_pre_sow type="text" description="Enter number of days before window to apply pre-crop manure (days)">30</manure_days_pre_sow>
-              <manure_amount_pre_sow type="text" description="Amount of manure to apply (kg/ha) : ">0</manure_amount_pre_sow>
-              <manure_type_pre_sow type="list" listvalues="manure,fym,heap_uncov,heap_cov,pit,communal" description="manure type : ">manure</manure_type_pre_sow>
-              <manure_cnr_pre_sow type="text" description="manure CNR : ">25</manure_cnr_pre_sow>
-              <manure_cpr_pre_sow type="text" description="manure CPR : ">50</manure_cpr_pre_sow>
-              <category description="Pre-sowing fertiliser application" type="category" />
-              <fert_days_pre_sow type="text" description="Enter number of days before window to apply pre-crop fertiliser (days)">25</fert_days_pre_sow>
-              <fert_amount_pre_sow type="text" description="Amount of pre-crop fertiliser (kg/ha)">50</fert_amount_pre_sow>
-              <fert_criteria_pre_sow type="text" description="Don't add fertiliser if pre-crop N in top 2 layers exceeds (kg/ha)">1000</fert_criteria_pre_sow>
-              <totn_pre_sow type="text" description=" OR  Amount of pre-crop N required in top 3 layers (kg/ha)">0</totn_pre_sow>
-              <fert_type_pre_sow type="text" description="Type (NO3_N, NH4_N, NH4NO3, urea_N, urea_no3, urea)">urea_N</fert_type_pre_sow>
-              <category description="Tillage components" type="category" />
-              <surfaceommodule type="modulename" description="Name of your surface organic matter module : ">SurfaceOrganicMatter</surfaceommodule>
-              <soilmodule type="modulename" description="Name of your soil module : ">Soil</soilmodule>
-              <category description="Planter Tillage" type="category" />
-              <planter_type type="list" listvalues="user_defined, planter" description="Planter type">user_defined</planter_type>
-              <planter_depth type="text" description="User_defined depth of seedbed preparation (mm)">150</planter_depth>
-              <thin_fraction type="text" description="Enter fraction of weed population killed (0-1)">1</thin_fraction>
-              <planter_f_incorp type="text" description="User_defined fraction of surface residues to incorporate (0-1)">1</planter_f_incorp>
-              <planter_cn_red type="text" description="cn reduction after tillage () : ">0</planter_cn_red>
-              <planter_cn_rain type="text" description="amount of cummulative rain to dissipate tillage effects on cn () : ">0</planter_cn_rain>
-              <category description="Seed-bed Tillage Preparation" type="category" />
-              <till_days_pre_sow type="text" description="Enter number of days before window to prepare seed-bed (days)">0</till_days_pre_sow>
-              <must_till type="yesno" description="Must Till (yes/no)">no</must_till>
-              <tillage_type type="list" listvalues="user_defined,chisel,disc,planter,burn,burn_90,graze,scarifier,rip,blade,tine" description="Tillage type (user_defined, chisel, disc, planter)">disc</tillage_type>
-              <tillage_depth type="text" description="User_defined depth of seedbed preparation (mm)">100</tillage_depth>
-              <tillage_f_incorp type="text" description="User_defined fraction of surface residues to incorporate (0-1)">1</tillage_f_incorp>
-              <fraction type="text" description="Enter biomass removal fraction of growing weeds from field (0-1)">0</fraction>
-              <tillage_cn_red type="text" description="cn reduction after tillage () : ">0</tillage_cn_red>
-              <tillage_cn_rain type="text" description="amount of cummulative rain to dissipate tillage effects on cn () : ">0</tillage_cn_rain>
-            </ui>
-            <script>
-              <text>
+        </manager2>
+        <manager name="Sow using a variable rule with intercropping">
+          <ui>
+            <category description="Crop properties" type="category" />
+            <crop type="crop" description="Name of this crop">maize</crop>
+            <cultivar1 type="cultivars" description="Enter cultivar : ">sc401</cultivar1>
+            <cropmethod type="list" listvalues="sole,intercrop" description="Method of cropping">sole</cropmethod>
+            <rotation_exclude type="yesno" description="Exclude from rotation sequence">no</rotation_exclude>
+            <category description="Sowing criteria" type="category" />
+            <date1 type="ddmmmdate" description="Enter sowing window START date (dd-mmm)">1-nov</date1>
+            <date2 type="ddmmmdate" description="Enter sowing window END date (dd-mmm)">30-dec</date2>
+            <must_sow type="yesno" description="Must Sow">no</must_sow>
+            <rain_amount type="text" description="Enter amount of cumulative rainfall (mm)">20</rain_amount>
+            <rain_days type="text" description="Enter number of days to accumulate rainfall (days)">5</rain_days>
+            <esw_amount type="text" description="Enter amount of soil water (mm)">30</esw_amount>
+            <sow_opp type="text" description="Enter sowing opportunity number to sow on (1..n)">1</sow_opp>
+            <surface_up type="text" description="Enter upper limit of sw in top layer (0-2) (mm esw/mm soil)">2</surface_up>
+            <surface_low type="text" description="Enter lower limit of sw in top layer (0-1) (mm esw/mm soil)">0</surface_low>
+            <category description="Sowing specs" type="category" />
+            <density type="text" description="Enter sowing density  (plants/m2)">2.2</density>
+            <depth type="text" description="Enter sowing depth  (mm)">100</depth>
+            <row_spacing type="text" description="Enter row spacing  (mm) (m for maize and sorghum)">0.9</row_spacing>
+            <category description="Sorghum specs" type="category" />
+            <ftn type="text" description="Enter Fertile Tiller No. : ">1</ftn>
+            <skiprow type="list" listvalues="solid, single, double" description="Skip row : ">solid</skiprow>
+            <category description="Starter fertiliser application" type="category" />
+            <fert_amount_sow type="text" description="Amount of starter fertiliser at sowing (kg/ha)">0</fert_amount_sow>
+            <fert_type_sow type="list" listvalues="NO3_N, NH4_N, NH4NO3, urea_N, urea_no3, urea" description="Type">urea_N</fert_type_sow>
+            <category description="TopDress fertiliser application" type="category" />
+            <fert_days_TopDress type="text" description="Enter number of days after sowing to apply top-dress fertiliser (days)">35</fert_days_TopDress>
+            <fert_amount_TopDress type="text" description="Amount of TopDress fertiliser (kg/ha)">27</fert_amount_TopDress>
+            <fert_type_TopDress type="list" listvalues="NO3_N, NH4_N, NH4NO3, urea_N, urea_no3, urea" description="Type"> NH4NO3</fert_type_TopDress>
+            <category description="Pre-sowing manure application" type="category" />
+            <surfaceommodule_pre_sow type="modulename" description="Module used to apply the manure : ">SurfaceOrganicMatter</surfaceommodule_pre_sow>
+            <manure_days_pre_sow type="text" description="Enter number of days before window to apply pre-crop manure (days)">30</manure_days_pre_sow>
+            <manure_amount_pre_sow type="text" description="Amount of manure to apply (kg/ha) : ">0</manure_amount_pre_sow>
+            <manure_type_pre_sow type="list" listvalues="manure,fym,heap_uncov,heap_cov,pit,communal" description="manure type : ">manure</manure_type_pre_sow>
+            <manure_cnr_pre_sow type="text" description="manure CNR : ">25</manure_cnr_pre_sow>
+            <manure_cpr_pre_sow type="text" description="manure CPR : ">50</manure_cpr_pre_sow>
+            <category description="Pre-sowing fertiliser application" type="category" />
+            <fert_days_pre_sow type="text" description="Enter number of days before window to apply pre-crop fertiliser (days)">25</fert_days_pre_sow>
+            <fert_amount_pre_sow type="text" description="Amount of pre-crop fertiliser (kg/ha)">50</fert_amount_pre_sow>
+            <fert_criteria_pre_sow type="text" description="Don't add fertiliser if pre-crop N in top 2 layers exceeds (kg/ha)">1000</fert_criteria_pre_sow>
+            <totn_pre_sow type="text" description=" OR  Amount of pre-crop N required in top 3 layers (kg/ha)">0</totn_pre_sow>
+            <fert_type_pre_sow type="text" description="Type (NO3_N, NH4_N, NH4NO3, urea_N, urea_no3, urea)">urea_N</fert_type_pre_sow>
+            <category description="Tillage components" type="category" />
+            <surfaceommodule type="modulename" description="Name of your surface organic matter module : ">SurfaceOrganicMatter</surfaceommodule>
+            <soilmodule type="modulename" description="Name of your soil module : ">Soil</soilmodule>
+            <category description="Planter Tillage" type="category" />
+            <planter_type type="list" listvalues="user_defined, planter" description="Planter type">user_defined</planter_type>
+            <planter_depth type="text" description="User_defined depth of seedbed preparation (mm)">150</planter_depth>
+            <thin_fraction type="text" description="Enter fraction of weed population killed (0-1)">1</thin_fraction>
+            <planter_f_incorp type="text" description="User_defined fraction of surface residues to incorporate (0-1)">1</planter_f_incorp>
+            <planter_cn_red type="text" description="cn reduction after tillage () : ">0</planter_cn_red>
+            <planter_cn_rain type="text" description="amount of cummulative rain to dissipate tillage effects on cn () : ">0</planter_cn_rain>
+            <category description="Seed-bed Tillage Preparation" type="category" />
+            <till_days_pre_sow type="text" description="Enter number of days before window to prepare seed-bed (days)">0</till_days_pre_sow>
+            <must_till type="yesno" description="Must Till (yes/no)">no</must_till>
+            <tillage_type type="list" listvalues="user_defined,chisel,disc,planter,burn,burn_90,graze,scarifier,rip,blade,tine" description="Tillage type (user_defined, chisel, disc, planter)">disc</tillage_type>
+            <tillage_depth type="text" description="User_defined depth of seedbed preparation (mm)">100</tillage_depth>
+            <tillage_f_incorp type="text" description="User_defined fraction of surface residues to incorporate (0-1)">1</tillage_f_incorp>
+            <fraction type="text" description="Enter biomass removal fraction of growing weeds from field (0-1)">0</fraction>
+            <tillage_cn_red type="text" description="cn reduction after tillage () : ">0</tillage_cn_red>
+            <tillage_cn_rain type="text" description="amount of cummulative rain to dissipate tillage effects on cn () : ">0</tillage_cn_rain>
+          </ui>
+          <script>
+            <text>
          next = 1
          crop_in = 0
          blank = 'fallow'
@@ -1909,10 +1908,10 @@ public class Script
          wht_sow_opp_days = 0
          days_this_year = 0
         </text>
-              <event>init</event>
-            </script>
-            <script>
-              <text>
+            <event>init</event>
+          </script>
+          <script>
+            <text>
 
          if (date_within('[date1], [date2]') = 1) THEN
          else
@@ -1920,10 +1919,10 @@ public class Script
             wht_sow_opp_days = 0
          endif
          </text>
-              <event>end_of_day</event>
-            </script>
-            <script>
-              <text>
+            <event>end_of_day</event>
+          </script>
+          <script>
+            <text>
 
          days_this_year = 364 + (date('1-mar') - date('28-feb'))
          if (next_crop = '[crop]' OR next_crop = blank OR '[rotation_exclude]' = 'yes') then
@@ -2121,38 +2120,38 @@ public class Script
          else
          endif
          </text>
-              <event>process</event>
-            </script>
-          </manager>
-          <manager name="Output at harvesting for intercropping">
-            <ui>
-              <category description="Output criteria" type="category" />
-              <crop type="crop" description="Enter name of crop to output at harvest : ">maize</crop>
-              <outputfile type="modulename" description="Name of outputfile component : ">outputfile</outputfile>
-            </ui>
-            <script name="end_of_day">
-              <text>
+            <event>process</event>
+          </script>
+        </manager>
+        <manager name="Output at harvesting for intercropping">
+          <ui>
+            <category description="Output criteria" type="category" />
+            <crop type="crop" description="Enter name of crop to output at harvest : ">maize</crop>
+            <outputfile type="modulename" description="Name of outputfile component : ">outputfile</outputfile>
+          </ui>
+          <script name="end_of_day">
+            <text>
          if ([crop]_to_harvest = 1) then
             '[outputfile]' do_output
          endif
             </text>
-              <event>end_of_day</event>
-            </script>
-          </manager>
-          <manager name="Harvesting rule for intercropping">
-            <ui>
-              <category description="Harvesting criteria" type="category" />
-              <crop type="crop" description="Enter name of crop to harvest when ripe : ">maize</crop>
-              <fraction_to_remove type="text" description="Enter fraction of stover to remove: ">0.0</fraction_to_remove>
-            </ui>
-            <script name="init">
-              <text>
+            <event>end_of_day</event>
+          </script>
+        </manager>
+        <manager name="Harvesting rule for intercropping">
+          <ui>
+            <category description="Harvesting criteria" type="category" />
+            <crop type="crop" description="Enter name of crop to harvest when ripe : ">maize</crop>
+            <fraction_to_remove type="text" description="Enter fraction of stover to remove: ">0.0</fraction_to_remove>
+          </ui>
+          <script name="init">
+            <text>
           [crop]_to_harvest = 0
             </text>
-              <event>init</event>
-            </script>
-            <script name="end_of_day">
-              <text>
+            <event>init</event>
+          </script>
+          <script name="end_of_day">
+            <text>
          if ([crop]_to_harvest = 1) then
             [crop] harvest remove=[fraction_to_remove]
             [crop] kill_crop
@@ -2177,37 +2176,36 @@ public class Script
             [crop]_to_harvest = 1
          endif
             </text>
-              <event>end_of_day</event>
-            </script>
-          </manager>
-          <manager name="Remove all residues on a fixed date">
-            <ui>
-              <category description="Removal criteria" type="category" />
-              <date type="ddmmmdate" description="Date to remove residues (dd-mmm) :">1-may</date>
-              <surfaceommodule type="modulename" description="Name of your surface organic matter module : ">SurfaceOrganicMatter</surfaceommodule>
-            </ui>
-            <script>
-              <text>
+            <event>end_of_day</event>
+          </script>
+        </manager>
+        <manager name="Remove all residues on a fixed date">
+          <ui>
+            <category description="Removal criteria" type="category" />
+            <date type="ddmmmdate" description="Date to remove residues (dd-mmm) :">1-may</date>
+            <surfaceommodule type="modulename" description="Name of your surface organic matter module : ">SurfaceOrganicMatter</surfaceommodule>
+          </ui>
+          <script>
+            <text>
          if today = date('[date]') then
             '[surfaceommodule]' tillage type = user_defined, f_incorp = 1.0 (), tillage_depth = 0.0 ()
          endif
             </text>
-              <event>start_of_day</event>
-            </script>
-          </manager>
-        </folder>
-        <outputfile>
-          <filename name="filename" output="yes">Continuous Maize.out</filename>
-          <title>Continuous Maize</title>
-          <variables name="My Variables">
-            <variable>dd/mm/yyyy as Date</variable>
-            <variable>yield</variable>
-          </variables>
-          <events name="My Variables Events">
-            <event>end_day</event>
-          </events>
-        </outputfile>
-      </area>
-    </simulation>
-  </folder>
+            <event>start_of_day</event>
+          </script>
+        </manager>
+      </folder>
+      <outputfile>
+        <filename name="filename" output="yes">Continuous Maize.out</filename>
+        <title>Continuous Maize</title>
+        <variables name="My Variables">
+          <variable>dd/mm/yyyy as Date</variable>
+          <variable>yield</variable>
+        </variables>
+        <events name="My Variables Events">
+          <event>end_day</event>
+        </events>
+      </outputfile>
+    </area>
+  </simulation>
 </folder>

@@ -68,28 +68,16 @@ apsimOptim<-function(apsimWd, apsimExe, apsimFile, apsimVarL, Varinfo, tag, unli
     apsimValue <- as.list((news)) ##Takes the values form new generated samples
     Fname<-paste0(unlist(strsplit(apsimFile, "[.]"))[1],"_edited",tagc,".apsim") #edited file
     ## Edit file
-    infosim<-(edit_apsim(file = apsimFile, wd = apsimWd, var = apsimVar, tag=paste0("_edited",tagc),
-                         value = apsimValue, varType = VarT, Elpos = elp, overwrite = FALSE,ifelse(Combinesim,T,F)))
-    simnames<-infosim[[1]]
-    simtit<-unlist(infosim[[2]])
-    simtit<-substr(simtit,0,unlist(gregexpr(pattern ='_edited',simtit))-1)
+    simname<-(edit_apsim(file = apsimFile, wd = apsimWd, var = apsimVar, tag=paste0("_edited",tagc),
+                         value = apsimValue, varType = VarT, Elpos = elp, overwrite = FALSE))
+ # cat("----------",simname,"\n")
+    outFname<-paste0(unclass(simname),".out") #outfile
+    sumFname<-paste0(unclass(simname),".sum") #sumfile
 
-         # Find the dited file location
+    # Find the dited file location
     system(paste(addCommas(apsimExe),Fname, sep = " "), show.output.on.console = show.output)
-
-    if(Combinesim){
-      sim.res<-lapply(simnames,function(x){
-        (read_out(paste0(getwd(),"/",x)))
-      })
-      results<-do.call("rbind",sim.res)
-      results[,1]<-simtit
-    }else{
     # run the edited file
-      print(simnames)
-    results <- (read_out(paste0(getwd(),"/",simnames[1])))%>%filter(as.Date(V1) >= Start.date & as.Date(V1) <= End.date)
-    }
-
-
+    results <- (read_out(paste0(getwd(),"/",outFname)))%>%filter(as.Date(V1) >= Start.date & as.Date(V1) <= End.date)
     ## joining the simulation results with observed
     n1<-names(results)[1]
     n2<-names(obs)[1]
@@ -153,7 +141,7 @@ apsimOptim<-function(apsimWd, apsimExe, apsimFile, apsimVarL, Varinfo, tag, unli
 
   }# end e loop
   if(unlinkf){
-  #  unlink(c(Fname,outFname,sumFname), recursive = FALSE)
+    unlink(c(Fname,outFname,sumFname), recursive = FALSE)
   }
   #building output
     output<-list("Param" = out[which(complete.cases(out)),], "Simulations" = sws[, colSums(is.na(sws)) != nrow(sws)]

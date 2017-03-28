@@ -33,7 +33,7 @@ edit_apsim<-function(file, wd = getwd(), var, value, varType, Elpos=NULL, tag="-
   ### It does it for each varibale
   for(i in 1:length(var)){
 
-    vari<-pXML[[paste(var[i],sep="")]]
+    vari<-pXML[[paste("//area[",paddok,"]/",var[i],sep="")]]
 
     #If supplied length is shorter then length to replace, then
     #leave the remaining values unchanged
@@ -96,7 +96,7 @@ edit_apsim<-function(file, wd = getwd(), var, value, varType, Elpos=NULL, tag="-
     setwd(oldWD)
 
     saveXML(pXML,file=newFileName)
-    simname<-pXML[["//simulation[1]/@name"]]
+    simname<-pXML[["/folder/folder/simulation/@name"]]
     #
     rm(vari,wholeSim,outName,outTitle)
     if(exists("pXML")){
@@ -122,7 +122,7 @@ addCommas<-function(str){
 
 }
 ################## plot output
-plot.apsimOptim<-function(x,type="Posterior",burnin=0,cols=-1,namesv=NULL,cexi=NULL,chains=NULL){
+plot.apsimOptim<-function(x,type="Posterior",burnin=0,cols=-1){
   if(length(cols)==1 & cols[1]==-1){
     cols<-1:length(x$var)
     }
@@ -130,26 +130,17 @@ plot.apsimOptim<-function(x,type="Posterior",burnin=0,cols=-1,namesv=NULL,cexi=N
       params<-as.data.frame(x$Param)
       names(params)<-x$var
       params<-params[-c(1:burnin),cols]
-
-      mcmc_combo(params,
-                 gg_theme =(labs(title=x[[9]]))
-                   )
+      mcmc_combo(params)
   }else if (type=="Posterior"){
     params<-as.data.frame(x$Param)
     names(params)<-x$var
     params<-params[-c(1:burnin),cols]
-
-    mcmc_hist(params)+
-      theme_bw(base_size = 18)+
-      labs(title=x[[9]])
+    mcmc_hist(params)
  }else if (type=="Interval"){
     params<-as.data.frame(x$Param)
     names(params)<-x$var
     params<-params[-c(1:burnin),cols]
-
-    mcmc_intervals(params)+
-      theme_bw(base_size = 18)+
-      labs(title=x[[9]])
+    mcmc_intervals(params)
   }else if (type=="Cost"){
     cost<-x$Param[-c(1:burnin),length(x$var)+1]
     plot(cost)
@@ -173,42 +164,7 @@ plotdf%>%ggplot(aes(Date))+
   geom_line(aes(y=median),size=1.02)+
   geom_point(aes(y=Obs),size=3)+
   theme_bw(base_size = 18)+
-  theme(legend.position="none")+
-  labs(title=x[[9]])
-
-
-  }else if (type=="Multivariate"){
-    library(psych)
-    ## getting posterior
-    params<-as.data.frame(x$Param)
-    names(params)<-x$var
-    params<-params[-c(1:burnin),cols]
-   if(!is.null(namesv)) names(params)<-namesv ## changing the names
-   if(!is.null(cexi))sizesi<-cex
-    sizesi<-2
-    psych::pairs.panels(params,scale = F, hist.col="steelblue4",cex.cor=sizesi/2,
-                        cex=sizesi,rug=F, cex.labels = sizesi, gap=2, cex.axis = sizesi,mgp=c(2,2,0))
-  }else if (type=="ChainComparison"){
- if(!is.list(x)) stop("Your input needs to be a list with different ApsimOptim objects")
-
-All<-lapply(output,function(x){
-  params<-as.data.frame(x$Param)
-  params<-params[-c(1:burnin),cols]
-  names(params)<-x$var[cols]
-  return(params%>%mutate(Simname=x$`Simulation name`))
-})
-All<-do.call("rbind",All)%>%gather(Param,Value,-c(Simname))
-
-All%>%
-  ggplot(aes(y=Value,x=Param))+
-   # geom_violin(aes(fill=Simname),size=1)+
-    geom_boxplot(aes(fill=Simname),position =position_dodge(width = 0.9),size=1)+
-   #geom_jitter(aes(color=Simname))+
-    theme_bw(base_size = 18)+
-    scale_fill_brewer(palette="Greys")+
-    coord_flip()+
-    theme(legend.title = element_blank(),
-          legend.position = "top")
+  theme(legend.position="none")
 
 
   }
@@ -218,11 +174,9 @@ summary.apsimOptim<-function(x,burnin=0){
 cat("Total iteration=",x$Itration,"\n")
 cat("Accepted samples=",nrow(x$Param),"\n")
 cat("Simulation name=",as.character(x[9]),"\n")
-cat("Summary: --- \n")
+cat("--- \n")
 params<-as.data.frame(x$Param[-c(1:burnin),])
 names(params)<-c(x$var,"Cost")
-print(summary(params))
-cat("\n IQR: --- \n")
-print(apply(params, 2, function(x) IQR(x,na.rm = T)))
+summary(params)
 }
 

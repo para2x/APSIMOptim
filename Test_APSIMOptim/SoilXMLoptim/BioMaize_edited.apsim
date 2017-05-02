@@ -1,3 +1,4 @@
+<?xml version="1.0"?>
 <folder version="36" creator="Apsim 7.7-r3632" name="simulations">
   <simulation name="Continuous Maize">
     <metfile name="met">
@@ -7,7 +8,7 @@
       <start_date type="date" description="Enter the start date of the simulation">01/06/1985</start_date>
       <end_date type="date" description="Enter the end date of the simulation">01/05/1987</end_date>
     </clock>
-    <summaryfile />
+    <summaryfile/>
     <area name="paddock">
       <Soil>
         <RecordNumber>0</RecordNumber>
@@ -443,8 +444,8 @@
           </SoilCrop>
         </Water>
         <SoilWater>
-          <SummerCona>2.5</SummerCona>
-          <SummerU>9</SummerU>
+          <SummerCona>9.93625848733835</SummerCona>
+          <SummerU>9.47101219710627</SummerU>
           <SummerDate>1-Nov</SummerDate>
           <WinterCona>2.5</WinterCona>
           <WinterU>9</WinterU>
@@ -566,7 +567,7 @@
           </PH>
         </Analysis>
         <Sample name="Initial nitrogen">
-          <Date type="date" description="Sample date:" />
+          <Date type="date" description="Sample date:"/>
           <Thickness>
             <double>100</double>
             <double>100</double>
@@ -604,6 +605,9 @@
             <double>0.290</double>
           </NH4>
         </Sample>
+        <ini>
+          <filename input="yes">Soil.xml</filename>
+        </ini>
       </Soil>
       <surfaceom name="SurfaceOrganicMatter">
         <PoolName description="Organic Matter pool name">wheat</PoolName>
@@ -612,17 +616,17 @@
         <cnr description="C:N ratio of initial residue">80.0</cnr>
         <standing_fraction description="Fraction of residue standing">0.0</standing_fraction>
       </surfaceom>
-      <fertiliser />
-      <maize />
+      <fertiliser/>
+      <maize/>
       <folder name="Manager folder">
         <manager2 name="biochar 5v4">
           <ui>
-            <category5 type="category" description="Management" />
+            <category5 type="category" description="Management"/>
             <date_of_application type="text" description="Date of biochar application (mm/dd/yyyy)">03/01/1986</date_of_application>
             <biochar_added type="float" description="amount of biochar applied (kg/ha)">80000</biochar_added>
             <incorp_depth type="text" description="Biochar incorporation depth (mm): ">100</incorp_depth>
             <biochar_loss type="float" description="fraction of biochar lost during application (0-1)">0.02</biochar_loss>
-            <category6 type="category" description="Biochar properties" />
+            <category6 type="category" description="Biochar properties"/>
             <feedbio type="list" listvalues="Manure,Corn,Oak,FoodWaste,Grass,Pine,Polutry,Hazelnut,Other" description="Feedstock class">Corn</feedbio>
             <PTemp type="text" description="Highest pyrolysis temperature ">450</PTemp>
             <MRT1 type="float" description="mean residence time for labile biochar pool (years)">1</MRT1>
@@ -636,7 +640,7 @@
             <bc_wfps_factor type="text" description="Biochar WFPS factor (0-1)">1</bc_wfps_factor>
             <nh4_adsorption type="text" description="Biochar nh4 absorption coefficient (Langmuir)">0.006</nh4_adsorption>
             <nh4_desorption type="text" description="Biochar nh4 desorption coefficient (Langmuir)">0.06</nh4_desorption>
-            <Categorypriming type="category" description="Priming effects" />
+            <Categorypriming type="category" description="Priming effects"/>
             <prim_biom type="float" description="priming coefficient for biom pool (-1 to 1) use 0.05">0</prim_biom>
             <prim_hum type="float" description="priming coefficient for hum pool (-1 to 1) use 0.05">0</prim_hum>
             <prim_cell type="float" description="priming coefficient for cell pool (-1 to 1) use 0.08">0</prim_cell>
@@ -646,9 +650,9 @@
             <prim_fr type="float" description="negative priming coefficient for internal C partioning (use -0.1), biom">0</prim_fr>
             <prim_ef_fom type="text" description="negative priming for internal C partitioning (use 0.1 for 20 mg),fom">0</prim_ef_fom>
             <prim_fr_fom type="text" description="negative priming for internal C partitioning (use -0.1 for 20 mg), fom">0</prim_fr_fom>
-            <category2 type="category" description="Tillage info" />
+            <category2 type="category" description="Tillage info"/>
             <tillage type="text" description="% BD reduction due to tillage">0.8</tillage>
-            <category3 type="category" description="Soil information" />
+            <category3 type="category" description="Soil information"/>
             <sand type="float" description="sand (0-1)">0.41</sand>
             <clay type="float" description="clay (0-1) ">0.21</clay>
             <biom_cn type="text" description="C/N ratio of biom pool:">8</biom_cn>
@@ -659,7 +663,7 @@
             <lph type="text" description="Soil lower ph">3.5</lph>
             <ab_val type="text" description="Acid - Base value">0</ab_val>
             <bot_slope type="text" description="Unit conversion for titration curve (use 10)">10</bot_slope>
-            <category type="category" description="Switches for various biochar components (development purposes)" />
+            <category type="category" description="Switches for various biochar components (development purposes)"/>
             <decomp_switch type="list" listvalues="on,off" description="Priming effects? (on/off)">on</decomp_switch>
             <nitrification_switch type="list" listvalues="on,off" description="Nitrification effects? (on/off)">on</nitrification_switch>
             <ph_switch type="list" listvalues="on,off" description="PH effects ? (on/off)">on</ph_switch>
@@ -1824,12 +1828,12 @@ public class Script
         </manager2>
         <manager name="Sow using a variable rule with intercropping">
           <ui>
-            <category description="Crop properties" type="category" />
+            <category description="Crop properties" type="category"/>
             <crop type="crop" description="Name of this crop">maize</crop>
             <cultivar1 type="cultivars" description="Enter cultivar : ">sc401</cultivar1>
             <cropmethod type="list" listvalues="sole,intercrop" description="Method of cropping">sole</cropmethod>
             <rotation_exclude type="yesno" description="Exclude from rotation sequence">no</rotation_exclude>
-            <category description="Sowing criteria" type="category" />
+            <category description="Sowing criteria" type="category"/>
             <date1 type="ddmmmdate" description="Enter sowing window START date (dd-mmm)">1-nov</date1>
             <date2 type="ddmmmdate" description="Enter sowing window END date (dd-mmm)">30-dec</date2>
             <must_sow type="yesno" description="Must Sow">no</must_sow>
@@ -1839,44 +1843,44 @@ public class Script
             <sow_opp type="text" description="Enter sowing opportunity number to sow on (1..n)">1</sow_opp>
             <surface_up type="text" description="Enter upper limit of sw in top layer (0-2) (mm esw/mm soil)">2</surface_up>
             <surface_low type="text" description="Enter lower limit of sw in top layer (0-1) (mm esw/mm soil)">0</surface_low>
-            <category description="Sowing specs" type="category" />
+            <category description="Sowing specs" type="category"/>
             <density type="text" description="Enter sowing density  (plants/m2)">2.2</density>
             <depth type="text" description="Enter sowing depth  (mm)">100</depth>
             <row_spacing type="text" description="Enter row spacing  (mm) (m for maize and sorghum)">0.9</row_spacing>
-            <category description="Sorghum specs" type="category" />
+            <category description="Sorghum specs" type="category"/>
             <ftn type="text" description="Enter Fertile Tiller No. : ">1</ftn>
             <skiprow type="list" listvalues="solid, single, double" description="Skip row : ">solid</skiprow>
-            <category description="Starter fertiliser application" type="category" />
+            <category description="Starter fertiliser application" type="category"/>
             <fert_amount_sow type="text" description="Amount of starter fertiliser at sowing (kg/ha)">0</fert_amount_sow>
             <fert_type_sow type="list" listvalues="NO3_N, NH4_N, NH4NO3, urea_N, urea_no3, urea" description="Type">urea_N</fert_type_sow>
-            <category description="TopDress fertiliser application" type="category" />
+            <category description="TopDress fertiliser application" type="category"/>
             <fert_days_TopDress type="text" description="Enter number of days after sowing to apply top-dress fertiliser (days)">35</fert_days_TopDress>
             <fert_amount_TopDress type="text" description="Amount of TopDress fertiliser (kg/ha)">27</fert_amount_TopDress>
             <fert_type_TopDress type="list" listvalues="NO3_N, NH4_N, NH4NO3, urea_N, urea_no3, urea" description="Type"> NH4NO3</fert_type_TopDress>
-            <category description="Pre-sowing manure application" type="category" />
+            <category description="Pre-sowing manure application" type="category"/>
             <surfaceommodule_pre_sow type="modulename" description="Module used to apply the manure : ">SurfaceOrganicMatter</surfaceommodule_pre_sow>
             <manure_days_pre_sow type="text" description="Enter number of days before window to apply pre-crop manure (days)">30</manure_days_pre_sow>
             <manure_amount_pre_sow type="text" description="Amount of manure to apply (kg/ha) : ">0</manure_amount_pre_sow>
             <manure_type_pre_sow type="list" listvalues="manure,fym,heap_uncov,heap_cov,pit,communal" description="manure type : ">manure</manure_type_pre_sow>
             <manure_cnr_pre_sow type="text" description="manure CNR : ">25</manure_cnr_pre_sow>
             <manure_cpr_pre_sow type="text" description="manure CPR : ">50</manure_cpr_pre_sow>
-            <category description="Pre-sowing fertiliser application" type="category" />
+            <category description="Pre-sowing fertiliser application" type="category"/>
             <fert_days_pre_sow type="text" description="Enter number of days before window to apply pre-crop fertiliser (days)">25</fert_days_pre_sow>
             <fert_amount_pre_sow type="text" description="Amount of pre-crop fertiliser (kg/ha)">50</fert_amount_pre_sow>
             <fert_criteria_pre_sow type="text" description="Don't add fertiliser if pre-crop N in top 2 layers exceeds (kg/ha)">1000</fert_criteria_pre_sow>
             <totn_pre_sow type="text" description=" OR  Amount of pre-crop N required in top 3 layers (kg/ha)">0</totn_pre_sow>
             <fert_type_pre_sow type="text" description="Type (NO3_N, NH4_N, NH4NO3, urea_N, urea_no3, urea)">urea_N</fert_type_pre_sow>
-            <category description="Tillage components" type="category" />
+            <category description="Tillage components" type="category"/>
             <surfaceommodule type="modulename" description="Name of your surface organic matter module : ">SurfaceOrganicMatter</surfaceommodule>
             <soilmodule type="modulename" description="Name of your soil module : ">Soil</soilmodule>
-            <category description="Planter Tillage" type="category" />
+            <category description="Planter Tillage" type="category"/>
             <planter_type type="list" listvalues="user_defined, planter" description="Planter type">user_defined</planter_type>
             <planter_depth type="text" description="User_defined depth of seedbed preparation (mm)">150</planter_depth>
             <thin_fraction type="text" description="Enter fraction of weed population killed (0-1)">1</thin_fraction>
             <planter_f_incorp type="text" description="User_defined fraction of surface residues to incorporate (0-1)">1</planter_f_incorp>
             <planter_cn_red type="text" description="cn reduction after tillage () : ">0</planter_cn_red>
             <planter_cn_rain type="text" description="amount of cummulative rain to dissipate tillage effects on cn () : ">0</planter_cn_rain>
-            <category description="Seed-bed Tillage Preparation" type="category" />
+            <category description="Seed-bed Tillage Preparation" type="category"/>
             <till_days_pre_sow type="text" description="Enter number of days before window to prepare seed-bed (days)">0</till_days_pre_sow>
             <must_till type="yesno" description="Must Till (yes/no)">no</must_till>
             <tillage_type type="list" listvalues="user_defined,chisel,disc,planter,burn,burn_90,graze,scarifier,rip,blade,tine" description="Tillage type (user_defined, chisel, disc, planter)">disc</tillage_type>
@@ -2125,7 +2129,7 @@ public class Script
         </manager>
         <manager name="Output at harvesting for intercropping">
           <ui>
-            <category description="Output criteria" type="category" />
+            <category description="Output criteria" type="category"/>
             <crop type="crop" description="Enter name of crop to output at harvest : ">maize</crop>
             <outputfile type="modulename" description="Name of outputfile component : ">outputfile</outputfile>
           </ui>
@@ -2140,7 +2144,7 @@ public class Script
         </manager>
         <manager name="Harvesting rule for intercropping">
           <ui>
-            <category description="Harvesting criteria" type="category" />
+            <category description="Harvesting criteria" type="category"/>
             <crop type="crop" description="Enter name of crop to harvest when ripe : ">maize</crop>
             <fraction_to_remove type="text" description="Enter fraction of stover to remove: ">0.0</fraction_to_remove>
           </ui>
@@ -2181,7 +2185,7 @@ public class Script
         </manager>
         <manager name="Remove all residues on a fixed date">
           <ui>
-            <category description="Removal criteria" type="category" />
+            <category description="Removal criteria" type="category"/>
             <date type="ddmmmdate" description="Date to remove residues (dd-mmm) :">1-may</date>
             <surfaceommodule type="modulename" description="Name of your surface organic matter module : ">SurfaceOrganicMatter</surfaceommodule>
           </ui>

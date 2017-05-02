@@ -1,13 +1,82 @@
 ### read outputfile
 read_out<-function(out_file){
+  tryCatch({
+    res<-data.table::fread(out_file)[-1,]
+    eval(parse(text = paste0("res$",names(res)[1],"<-dmy(res$",names(res)[1],")") ))
+  },error=function(cond){
+    res=data.frame()
+  })
 
-  skipline<-1
-
-  res<-read.table(out_file,skip =4,header = FALSE,colClasses=c("character","numeric"))
-  res$V1<-dmy(res$V1)
   return(res)
 
 }
+
+### read outputfile
+read_out_sen<-function(out_file){
+  tryCatch({
+    res<-data.table::fread(out_file)[-1,]
+    },error=function(cond){
+      res=data.frame()
+    })
+
+  return(res)
+
+}
+
+## edit apsim xml file
+edit_apsimxml<-function (file, wd = getwd(), var, value, overwrite = FALSE,XMLPOS)
+{
+  oldWD <- getwd()
+  setwd(wd)
+  if (!(file %in% list.files())) {
+    stop("Specified file could not be found in the current working directory.")
+  }
+  if (length(grep(".apsim$", file)) > 0) {
+    warning("Specified file is an APSIM simulation file and will be passed to edit_apsim.")
+    return(edit_apsim(file = file, wd = wd, var = var, value = value,
+                      overwrite = overwrite))
+  }
+  pXML <- xmlParse(file)
+
+  for (i in 1:length(var)) {
+
+    vari <- pXML[paste("//", var[i], sep = "")]
+    lengthVari <- xmlSize(vari)
+    lReplace <- length(value[[i]])
+
+    newVar <- as.character(value[[i]])
+
+############################################# Changing the value
+    for (k in 1:lengthVari) {
+       ll<-strsplit(xmlValue(vari[[k]])," ")
+       ll<-unlist(ll)
+       ll<-ll[nchar(ll)>0]
+     #  cat(length(ll),"-","\n")
+
+       if(length(ll)>1){
+         ll[XMLPOS[i]]<-newVar
+       }else{
+         ll[1]<-newVar
+       }
+
+      xmlValue(vari[[k]]) <- paste(ll,collapse = " ")
+    }
+    ###############################
+  }
+  addWd <- paste(wd, file, sep = "/")
+  if (overwrite) {
+    setwd(oldWD)
+    return(saveXML(pXML, file = addWd))
+  }
+  else {
+    newName <- paste(gsub(".xml", "", addWd), "-edited",
+                     sep = "")
+    setwd(oldWD)
+    return(saveXML(pXML, file = paste(newName, ".xml", sep = "")))
+  }
+}
+
+
 ### editing the apsim file
 edit_apsim<-function(file, wd = getwd(), var, value, varType, Elpos=NULL, tag="-edited",paddok=1,
                      overwrite = FALSE){
@@ -33,7 +102,7 @@ edit_apsim<-function(file, wd = getwd(), var, value, varType, Elpos=NULL, tag="-
   ### It does it for each varibale
   for(i in 1:length(var)){
 
-    vari<-pXML[[paste("//area[",paddok,"]/",var[i],sep="")]]
+    vari<-pXML[[paste(var[i],sep="")]]
 
     #If supplied length is shorter then length to replace, then
     #leave the remaining values unchanged
@@ -96,7 +165,7 @@ edit_apsim<-function(file, wd = getwd(), var, value, varType, Elpos=NULL, tag="-
     setwd(oldWD)
 
     saveXML(pXML,file=newFileName)
-    simname<-pXML[["/folder/folder/simulation/@name"]]
+    simname<-pXML[["//simulation/@name"]]
     #
     rm(vari,wholeSim,outName,outTitle)
     if(exists("pXML")){
@@ -122,7 +191,7 @@ addCommas<-function(str){
 
 }
 ################## plot output
-plot.apsimOptim<-function(x,type="Posterior",burnin=0,cols=-1){
+plot.apsimOptim<-function(x,type="Posterior",burnin=0,cols=-1,namesv=NULL,cexi=NULL,chains=NULL){
   if(length(cols)==1 & cols[1]==-1){
     cols<-1:length(x$var)
     }
@@ -167,7 +236,42 @@ plotdf%>%ggplot(aes(Date))+
   theme(legend.position="none")
 
 
-  }
+
+}else if (type=="Multivariate"){
+  library(psych)
+  ## getting posterior
+  params<-as.data.frame(x$Param)
+  names(params)<-x$var
+  params<-params[-c(1:burnin),cols]
+  if(!is.null(namesv)) names(params)<-namesv ## changing the names
+  if(!is.null(cexi))sizesi<-cex
+  sizesi<-2
+  psych::pairs.panels(params,scale = F, hist.col="steelblue4",cex.cor=sizesi/2,
+                      cex=sizesi,rug=F, cex.labels = sizesi, gap=2, cex.axis = sizesi,mgp=c(2,2,0))
+}else if (type=="ChainComparison"){
+  if(!is.list(x)) stop("Your input needs to be a list with different ApsimOptim objects")
+output<-x
+  All<-lapply(output,function(x){
+    params<-as.data.frame(x$Param)
+    params<-params[-c(1:burnin),cols]
+    names(params)<-x$var[cols]
+    return(params%>%mutate(Simname=x$`Simulation name`))
+  })
+  All<-do.call("rbind",All)%>%gather(Param,Value,-c(Simname))
+
+  All%>%
+    ggplot(aes(y=Value,x=Param))+
+    # geom_violin(aes(fill=Simname),size=1)+
+    geom_boxplot(aes(fill=Simname),position =position_dodge(width = 0.9),size=1)+
+    #geom_jitter(aes(color=Simname))+
+    theme_bw(base_size = 18)+
+    scale_fill_brewer(palette="Greys")+
+    coord_flip()+
+    theme(legend.title = element_blank(),
+          legend.position = "top")
+
+
+}
 }
 
 summary.apsimOptim<-function(x,burnin=0){

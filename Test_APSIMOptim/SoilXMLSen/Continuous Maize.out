@@ -1,0 +1,7 @@
+ApsimVersion = 7.7
+Title = Continuous Maize
+     dd_mm_yyyy          yield            lai
+   (dd_mm_yyyy)        (kg/ha)      (m^2/m^2)
+     18_04_1986            0.0          0.001
+     12_03_1987         1177.0          0.001
+     01_05_1987            0.0          0.000

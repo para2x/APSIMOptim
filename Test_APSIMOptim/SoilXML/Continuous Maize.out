@@ -1,0 +1,7 @@
+ApsimVersion = 7.7
+Title = Continuous Maize
+           Date          yield
+   (dd/mm/yyyy)        (kg/ha)
+     21/02/1986          346.8
+     01/03/1987          958.1
+     01/05/1987            0.0
